@@ -456,6 +456,30 @@ const PAIR_SETS = [
 
 const STORAGE_KEY = 'cavallmagic_moodboard_v1';
 
+const SB_URL = 'https://jtpmlrdfgwqxbtpvsbjm.supabase.co';
+const SB_KEY = 'sb_publishable_G0qhqn4gbkbrE1VO-nrmBg_ozDnzQhQ';
+const SB_REST = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json' };
+const BOARD_ID = 'cavall-magic';
+const SB_BUCKET = 'moodboard';
+
+function migrateState(parsed){
+  if (parsed.fontCards){
+    parsed.fontCards = parsed.fontCards.map(c => c.titleFamily ? c : {
+      ...c,
+      titleFamily: c.family || 'Fraunces',
+      copyFamily: c.family || 'Work Sans',
+      bodyFamily: c.family || 'Work Sans'
+    });
+  }
+  if (parsed.notes){
+    parsed.notes = parsed.notes.map(n => (n.color === '#F6D96B' || n.color === '#F5D76E') ? { ...n, color: '#EFE3B8' } : n);
+  }
+  if (parsed.colors){
+    parsed.colors = parsed.colors.map(c => c.role ? c : { ...c, role: classifyRole(c.hex), locked: !!c.locked });
+  }
+  return parsed;
+}
+
 function buildInitialState(){
   return {
     images: {
@@ -501,27 +525,7 @@ class Component extends DCLogic {
   drag = null;
 
   componentDidMount(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw){
-        const parsed = JSON.parse(raw);
-        if (parsed.fontCards){
-          parsed.fontCards = parsed.fontCards.map(c => c.titleFamily ? c : {
-            ...c,
-            titleFamily: c.family || 'Fraunces',
-            copyFamily: c.family || 'Work Sans',
-            bodyFamily: c.family || 'Work Sans'
-          });
-        }
-        if (parsed.notes){
-          parsed.notes = parsed.notes.map(n => (n.color === '#F6D96B' || n.color === '#F5D76E') ? { ...n, color: '#EFE3B8' } : n);
-        }
-        if (parsed.colors){
-          parsed.colors = parsed.colors.map(c => c.role ? c : { ...c, role: classifyRole(c.hex), locked: !!c.locked });
-        }
-        this.setState(parsed);
-      }
-    }catch(e){}
+    this.loadBoard();
     this._onPaste = (e) => {
       const items = (e.clipboardData || window.clipboardData || {}).items || [];
       for (const it of items){
@@ -562,18 +566,65 @@ class Component extends DCLogic {
     document.removeEventListener('error', this._onImgError, true);
   }
 
+  async loadBoard(){
+    try{
+      const res = await fetch(`${SB_URL}/rest/v1/boards?id=eq.${BOARD_ID}&select=state`, { headers: SB_REST });
+      if (res.ok){
+        const rows = await res.json();
+        if (rows.length && rows[0].state && Object.keys(rows[0].state).length){
+          this.setState(migrateState(rows[0].state));
+        } else {
+          this.saveRemote();
+        }
+        return;
+      }
+    }catch(e){}
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) this.setState(migrateState(JSON.parse(raw)));
+    }catch(e){}
+  }
+
   save(){
     try{
       const { images, colors, fontCards, notes } = this.state;
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ images, colors, fontCards, notes }));
     }catch(e){}
+    clearTimeout(this._saveT);
+    this._saveT = setTimeout(() => this.saveRemote(), 800);
   }
 
-  addImage(section, url){
+  saveRemote(){
+    const { images, colors, fontCards, notes } = this.state;
+    fetch(`${SB_URL}/rest/v1/boards?on_conflict=id`, {
+      method: 'POST',
+      headers: { ...SB_REST, Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: JSON.stringify({ id: BOARD_ID, state: { images, colors, fontCards, notes }, updated_at: new Date().toISOString() })
+    }).catch(() => {});
+  }
+
+  async uploadDataUrl(dataUrl){
+    const blob = await (await fetch(dataUrl)).blob();
+    const ext = ((blob.type.split('/')[1] || 'png').split('+')[0]).replace(/[^a-z0-9]/gi, '') || 'png';
+    const path = `${BOARD_ID}/${uid('img')}.${ext}`;
+    const res = await fetch(`${SB_URL}/storage/v1/object/${SB_BUCKET}/${path}`, {
+      method: 'POST',
+      headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'x-upsert': 'true', 'Content-Type': blob.type || 'image/png' },
+      body: blob
+    });
+    if (!res.ok) throw new Error('upload failed');
+    return `${SB_URL}/storage/v1/object/public/${SB_BUCKET}/${path}`;
+  }
+
+  async addImage(section, url){
+    let finalUrl = url;
+    if (url && url.indexOf('data:') === 0){
+      try { finalUrl = await this.uploadDataUrl(url); } catch(e){ finalUrl = url; }
+    }
     this.setState(s => {
       const list = s.images[section];
       const n = list.length;
-      const item = { id: uid('img'), url, x: 40 + (n % 4) * 30, y: 40 + (n % 4) * 30, w: 280, rot: (Math.random()*6-3) };
+      const item = { id: uid('img'), url: finalUrl, x: 40 + (n % 4) * 30, y: 40 + (n % 4) * 30, w: 280, rot: (Math.random()*6-3) };
       return { images: { ...s.images, [section]: [...list, item] } };
     }, () => this.save());
   }
