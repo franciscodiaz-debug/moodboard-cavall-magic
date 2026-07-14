@@ -12,10 +12,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&family=DM+Serif+Display:wght@400&family=Spectral:wght@400;600;700&family=Bodoni+Moda:wght@400;600;700&family=Libre+Caslon+Text:wght@400;700&family=Instrument+Serif:wght@400&family=Work+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;600;700&family=Manrope:wght@400;600;700&family=Sora:wght@400;600;700&family=Public+Sans:wght@400;600;700&family=Epilogue:wght@400;600;700&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;background:#EFEEE9;}
-  ::selection{background:#2680AD2e;}
-  a{color:#2680AD;}
-  a:hover{color:#1c6489;}
+  :root{
+    --ink:#221F1A;
+    --paper:#EFEEE9;
+    --surface:#FBFAF6;
+    --panel:#F1F0EB;
+    --line:#DDDAD1;
+    --line-soft:#E5E2D9;
+    --text-2:#6E6A5E;
+    --text-3:#7C7261;
+    --accent:#C2542F;
+    --accent-ink:#A84525;
+    --on-dark:#F1F0EB;
+    --btn-hover:#3A332B;
+  }
+  body{margin:0;background:var(--paper);}
+  ::selection{background:#C2542F2e;}
+  a{color:var(--accent);}
+  a:hover{color:var(--accent-ink);}
   @keyframes fadeUpA{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
   @keyframes fadeUpB{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
   @keyframes popIn{from{opacity:0;transform:scale(0.85) rotate(-6deg);}to{opacity:1;transform:scale(1) rotate(0deg);}}
@@ -25,111 +39,111 @@
   }
 </style>
 </helmet>
-<div style="font-family:Helvetica,Arial,sans-serif;color:#221F1A;background:transparent;min-height:100vh;">
+<div style="font-family:Helvetica,Arial,sans-serif;color:var(--ink);background:transparent;min-height:100vh;">
 
   <div aria-hidden="true" data-noprint="true" style="position:fixed;inset:0;pointer-events:none;z-index:500;opacity:0.16;background-image:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22240%22%20height=%22240%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.8%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20type=%22saturate%22%20values=%220%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23n)%22%20opacity=%220.4%22/%3E%3C/svg%3E');"></div>
 
-  <div style="position:sticky;top:0;z-index:100;background:#F1F0EBe6;backdrop-filter:blur(8px);border-bottom:1px solid #DDDAD1;padding:14px 64px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;">
+  <div style="position:sticky;top:0;z-index:100;background:#F1F0EBe6;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 64px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;">
     <div style="display:flex;align-items:baseline;gap:16px;">
       <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-0.3px;">Cavall Màgic</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7C7261;">Tablero de identidad</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);">Painel de identidade</div>
     </div>
-    <button data-noprint="true" onClick="{{ exportPdf }}" title="Genera un PDF con todo el tablero tal como se ve" style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;border:none;padding:10px 22px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:0.3px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Descargar el tablero (PDF)</button>
+    <button data-noprint="true" onClick="{{ exportPdf }}" title="Gera um PDF com todo o painel do jeito que ele aparece" style="font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--on-dark);border:none;padding:10px 22px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:0.3px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:var(--btn-hover);transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Baixar o painel (PDF)</button>
   </div>
 
   <section style="padding:110px 64px 80px;max-width:900px;">
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:20px;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) both;">Atelier · Sant Antoni · Barcelona</div>
-    <h1 style="font-family:'Fraunces',serif;font-size:58px;font-weight:600;line-height:1.05;letter-spacing:-1px;margin:0 0 26px;max-width:16ch;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 80ms both;">Una identidad viva empieza acá.</h1>
-    <p style="font-size:17px;line-height:1.65;color:#6E6A5E;margin:0 0 48px;max-width:56ch;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 160ms both;">Este tablero junta todo lo que Cavall Màgic quiere ser: referencias, colores, tipografías y las piezas donde la marca va a vivir. Pegá, arrastrá, anotá — nada se pierde y nada está mal. Tu trabajo queda guardado en este navegador.</p>
-    <div style="display:flex;gap:48px;flex-wrap:wrap;border-top:1px solid #DDDAD1;padding-top:28px;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 240ms both;">
-      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#C2542F;font-weight:600;margin-bottom:8px;">01</div><div style="font-size:14px;color:#6E6A5E;line-height:1.5;">Juntá referencias e ideas que te muevan algo</div></div>
-      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#C2542F;font-weight:600;margin-bottom:8px;">02</div><div style="font-size:14px;color:#6E6A5E;line-height:1.5;">Definí paleta y tipografías con calma</div></div>
-      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#C2542F;font-weight:600;margin-bottom:8px;">03</div><div style="font-size:14px;color:#6E6A5E;line-height:1.5;">Sumá las piezas donde la marca va a aparecer</div></div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) both;">Atelier · Sant Antoni · Barcelona</div>
+    <h1 style="font-family:'Fraunces',serif;font-size:58px;font-weight:600;line-height:1.05;letter-spacing:-1px;margin:0 0 26px;max-width:16ch;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 80ms both;">Uma identidade viva começa aqui.</h1>
+    <p style="font-size:17px;line-height:1.65;color:var(--text-2);margin:0 0 48px;max-width:56ch;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 160ms both;">Este painel reúne tudo o que a Cavall Màgic quer ser: referências, cores, tipografias e as peças onde a marca vai viver. Cole, arraste, anote — nada se perde e nada está errado. Seu trabalho fica salvo neste navegador.</p>
+    <div style="display:flex;gap:48px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 240ms both;">
+      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;">01</div><div style="font-size:14px;color:var(--text-2);line-height:1.5;">Reúna referências e ideias que te toquem</div></div>
+      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;">02</div><div style="font-size:14px;color:var(--text-2);line-height:1.5;">Defina paleta e tipografias com calma</div></div>
+      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;">03</div><div style="font-size:14px;color:var(--text-2);line-height:1.5;">Adicione as peças onde a marca vai aparecer</div></div>
     </div>
   </section>
 
   <div ref="{{ notesWrapRef }}" style="position:relative;">
 
-    <section style="padding:96px 64px;border-top:1px solid #DDDAD1;position:relative;">
+    <section style="padding:96px 64px;border-top:1px solid var(--line);position:relative;">
       <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">01</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Concepto y dirección</div>
-      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Lo que la marca quiere ser</h2>
-      <p style="max-width:60ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Pegá referencias visuales, marcas que te inspiren y conceptos sueltos. No buscamos un logo único, sino un tono y un mundo de formas con variantes según dónde aparezcan.</p>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Conceito e direção</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">O que a marca quer ser</h2>
+      <p style="max-width:60ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Cole referências visuais, marcas que te inspirem e conceitos soltos. Não buscamos um logo único, e sim um tom e um universo de formas com variações conforme o lugar onde aparecem.</p>
 
       <div data-noprint="true" style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
-        <label style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;padding:10px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;display:inline-block;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);">
-          Traer imágenes
+        <label style="font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--on-dark);padding:10px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;display:inline-block;" style-hover="background:var(--btn-hover);transform:translateY(-1px);" style-active="transform:scale(0.97);">
+          Trazer imagens
           <input type="file" accept="image/*" multiple="" onChange="{{ onUploadConcept }}" style="display:none;" />
         </label>
-        <input type="text" placeholder="…o pegá una URL de imagen" value="{{ conceptUrlDraft }}" onChange="{{ onConceptUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid #DDDAD1;border-radius:999px;font-size:13px;width:230px;background:#FBFAF6;color:#221F1A;transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;" />
-        <button onClick="{{ onAddConceptUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #DDDAD1;color:#221F1A;padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:#221F1A;" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Sumar al tablero</button>
-        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#A6A195;">y si tenés algo copiado, Ctrl+V acá arriba alcanza</span>
+        <input type="text" placeholder="…ou cole uma URL de imagem" value="{{ conceptUrlDraft }}" onChange="{{ onConceptUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;width:230px;background:var(--surface);color:var(--ink);transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;" />
+        <button onClick="{{ onAddConceptUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid var(--line);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:var(--ink);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Adicionar ao painel</button>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--text-3);">e se você copiou algo, um Ctrl+V aqui em cima já resolve</span>
       </div>
 
-      <div ref="{{ conceptRef }}" onMouseEnter="{{ setActiveConcept }}" style="position:relative;min-height:640px;background:#FBFAF6;border:1px solid #DDDAD1;border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
+      <div ref="{{ conceptRef }}" onMouseEnter="{{ setActiveConcept }}" style="position:relative;min-height:640px;background:var(--surface);border:1px solid var(--line);border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
         <sc-for list="{{ conceptImages }}" as="img" hint-placeholder-count="2">
           <div style="{{ img.style }}">
             <sc-if value="{{ img.hasUrl }}" hint-placeholder-val="{{ false }}">
               <div style="background:#fff;padding:8px 8px 22px;box-shadow:0 6px 18px rgba(34,31,26,0.16);border-radius:2px;transition:box-shadow 200ms ease-out;">
-                <img ref="{{ img.imgRef }}" data-sample-img="true" data-img-id="{{ img.id }}" data-img-section="concept" alt="Referencia del moodboard" style="display:block;width:100%;height:auto;pointer-events:none;user-select:none;" />
+                <img ref="{{ img.imgRef }}" data-sample-img="true" data-img-id="{{ img.id }}" data-img-section="concept" alt="Referência do painel" style="display:block;width:100%;height:auto;pointer-events:none;user-select:none;" />
               </div>
             </sc-if>
             <div onPointerDown="{{ img.onDragStart }}" style="position:absolute;inset:0 0 22px 0;cursor:grab;" style-active="cursor:grabbing;"></div>
-            <div onPointerDown="{{ img.onResizeStart }}" title="Estirá para cambiar el tamaño" style="position:absolute;right:-6px;bottom:16px;width:14px;height:14px;background:#2680AD;border-radius:4px;cursor:nwse-resize;opacity:0.45;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.15);"></div>
-            <button data-noprint="true" onClick="{{ img.onDelete }}" aria-label="Sacar esta imagen" title="Sacar esta imagen" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:#221F1A;color:#F1F0EB;border:none;font-size:12px;cursor:pointer;line-height:1;opacity:0.4;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.12);" style-focus="outline:none;opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px #2680AD;">×</button>
+            <div onPointerDown="{{ img.onResizeStart }}" title="Estique para mudar o tamanho" style="position:absolute;right:-6px;bottom:16px;width:14px;height:14px;background:var(--accent);border-radius:4px;cursor:nwse-resize;opacity:0.45;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.15);"></div>
+            <button data-noprint="true" onClick="{{ img.onDelete }}" aria-label="Remover esta imagem" title="Remover esta imagem" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--on-dark);border:none;font-size:12px;cursor:pointer;line-height:1;opacity:0.4;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.12);" style-focus="outline:none;opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--accent);">×</button>
           </div>
         </sc-for>
       </div>
     </section>
 
-    <section style="padding:96px 64px;border-top:1px solid #DDDAD1;position:relative;">
-      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">02</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Paleta de colores</div>
-      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Los colores de la casa</h2>
-      <p style="max-width:62ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Entre cinco y ocho colores que funcionen en todas las piezas. Elegí los tuyos con el selector, o pedime una propuesta — fijá los que quieras conservar y yo cambio el resto.</p>
+    <section style="padding:96px 64px;border-top:1px solid var(--line);position:relative;">
+      <div aria-hidden="true" style="position:absolute;top:20px;left:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">02</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Paleta de cores</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">As cores da casa</h2>
+      <p style="max-width:62ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Entre cinco e oito cores que funcionem em todas as peças. Escolha as suas no seletor, ou me peça uma proposta — fixe as que quiser manter e eu troco o resto.</p>
 
       <div data-noprint="true" style="display:flex;gap:10px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
-        <input type="color" value="{{ newColorHex }}" onChange="{{ onNewColorHexChange }}" title="Elegí un color" style="width:52px;height:42px;border:1px solid #DDDAD1;border-radius:12px;padding:3px;cursor:pointer;background:#FBFAF6;transition:border-color 160ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;" />
-        <button onClick="{{ onAddColor }}" style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;border:none;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Sumar este color</button>
-        <button onClick="{{ suggestPalette }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #2680AD;color:#2680AD;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out,color 160ms ease-out;" style-hover="background:#2680AD;color:#F1F0EB;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Proponeme una paleta</button>
-        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#A6A195;">cada propuesta es distinta — insistí sin culpa</span>
+        <input type="color" value="{{ newColorHex }}" onChange="{{ onNewColorHexChange }}" title="Escolha uma cor" style="width:52px;height:42px;border:1px solid var(--line);border-radius:12px;padding:3px;cursor:pointer;background:var(--surface);transition:border-color 160ms ease-out;" style-hover="border-color:var(--ink);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);" />
+        <button onClick="{{ onAddColor }}" style="font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--on-dark);border:none;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:var(--btn-hover);transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Adicionar esta cor</button>
+        <button onClick="{{ suggestPalette }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out,color 160ms ease-out;" style-hover="background:var(--accent);color:var(--on-dark);transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Sugira uma paleta</button>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--text-3);">cada proposta é diferente — insista sem culpa</span>
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:18px;">
         <sc-for list="{{ colorCards }}" as="c" hint-placeholder-count="6">
-          <div style="{{ c.cardStyle }}width:180px;background:#FBFAF6;border:1px solid #E5E2D9;border-radius:20px;padding:26px 14px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
+          <div style="{{ c.cardStyle }}width:180px;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:26px 14px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
             <div style="{{ c.swatchStyle }}"></div>
-            <input value="{{ c.name }}" onChange="{{ c.onNameChange }}" aria-label="Nombre del color" style="width:100%;text-align:center;border:none;background:transparent;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:0;outline:none;color:#221F1A;border-radius:6px;" style-focus="box-shadow:0 0 0 2px #2680AD44;" />
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#A6A195;text-transform:uppercase;margin-top:5px;">{{ c.hex }}</span>
+            <input value="{{ c.name }}" onChange="{{ c.onNameChange }}" aria-label="Nome da cor" style="width:100%;text-align:center;border:none;background:transparent;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:0;outline:none;color:var(--ink);border-radius:6px;" style-focus="box-shadow:0 0 0 2px #C2542F44;" />
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-3);text-transform:uppercase;margin-top:5px;">{{ c.hex }}</span>
             <div style="display:flex;align-items:center;gap:12px;margin-top:16px;">
-              <button data-noprint="true" onClick="{{ c.onToggleLock }}" title="Un color fijado no cambia cuando pedís otra propuesta" style="{{ c.lockStyle }}" style-focus="outline:none;box-shadow:0 0 0 2px #FBFAF6,0 0 0 4px #2680AD;border-radius:4px;">{{ c.lockLabel }}</button>
-              <button data-noprint="true" onClick="{{ c.onDelete }}" style="font-family:'Space Grotesk',sans-serif;background:none;border:none;color:#A6A195;font-size:11px;cursor:pointer;text-decoration:underline;transition:color 140ms ease-out;" style-hover="color:#C2542F;" style-focus="outline:none;box-shadow:0 0 0 2px #FBFAF6,0 0 0 4px #2680AD;border-radius:4px;">sacar</button>
+              <button data-noprint="true" onClick="{{ c.onToggleLock }}" title="Uma cor fixada não muda quando você pede outra proposta" style="{{ c.lockStyle }}" style-focus="outline:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent);border-radius:4px;">{{ c.lockLabel }}</button>
+              <button data-noprint="true" onClick="{{ c.onDelete }}" style="font-family:'Space Grotesk',sans-serif;background:none;border:none;color:var(--text-3);font-size:11px;cursor:pointer;text-decoration:underline;transition:color 140ms ease-out;" style-hover="color:var(--accent);" style-focus="outline:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent);border-radius:4px;">remover</button>
             </div>
           </div>
         </sc-for>
       </div>
     </section>
 
-    <section style="padding:96px 64px;border-top:1px solid #DDDAD1;position:relative;">
+    <section style="padding:96px 64px;border-top:1px solid var(--line);position:relative;">
       <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">03</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Tipografías</div>
-      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Cómo suena por escrito</h2>
-      <p style="max-width:62ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Cada tarjeta es un juego completo: una fuente para el título, otra para el copy y otra para el cuerpo. Los logotipos van por su propio camino — esto es para los textos de todos los días.</p>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Tipografias</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Como soa por escrito</h2>
+      <p style="max-width:62ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Cada cartão é um conjunto completo: uma fonte para o título, outra para o texto e outra para o corpo. Os logotipos seguem por conta própria — isto é para os textos do dia a dia.</p>
 
       <div data-noprint="true" style="display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;">
-        <button onClick="{{ addFontCard }}" style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;border:none;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Nueva prueba en blanco</button>
-        <button onClick="{{ suggestFonts }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #2680AD;color:#2680AD;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out,color 160ms ease-out;" style-hover="background:#2680AD;color:#F1F0EB;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Dame otra combinación</button>
+        <button onClick="{{ addFontCard }}" style="font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--on-dark);border:none;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:var(--btn-hover);transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Novo teste em branco</button>
+        <button onClick="{{ suggestFonts }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out,color 160ms ease-out;" style-hover="background:var(--accent);color:var(--on-dark);transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Me dê outra combinação</button>
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:22px;">
         <sc-for list="{{ fontCards }}" as="fc" hint-placeholder-count="3">
-          <div style="width:340px;background:#FBFAF6;border:1px solid #E5E2D9;border-radius:20px;padding:28px;position:relative;animation:fadeUpA 320ms cubic-bezier(0.22,1,0.36,1) both;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
-            <button data-noprint="true" onClick="{{ fc.onDelete }}" aria-label="Sacar esta prueba" title="Sacar esta prueba" style="position:absolute;top:12px;right:14px;background:none;border:none;color:#A6A195;font-size:16px;cursor:pointer;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:#C2542F;transform:scale(1.15);" style-focus="outline:none;box-shadow:0 0 0 2px #FBFAF6,0 0 0 4px #2680AD;border-radius:4px;">×</button>
+          <div style="width:340px;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:28px;position:relative;animation:fadeUpA 320ms cubic-bezier(0.22,1,0.36,1) both;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
+            <button data-noprint="true" onClick="{{ fc.onDelete }}" aria-label="Remover este teste" title="Remover este teste" style="position:absolute;top:12px;right:14px;background:none;border:none;color:var(--text-3);font-size:16px;cursor:pointer;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:var(--accent);transform:scale(1.15);" style-focus="outline:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent);border-radius:4px;">×</button>
 
             <div style="margin-bottom:18px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#A6A195;">Título</span>
-                <select value="{{ fc.titleFamily }}" onChange="{{ fc.onTitleFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid #DDDAD1;border-radius:8px;background:#fff;color:#221F1A;cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);">Título</span>
+                <select value="{{ fc.titleFamily }}" onChange="{{ fc.onTitleFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:var(--ink);" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;">
                   <optgroup label="Serif">
                     <option value="Fraunces">Fraunces</option>
                     <option value="Playfair Display">Playfair Display</option>
@@ -149,20 +163,20 @@
                     <option value="Public Sans">Public Sans</option>
                     <option value="Epilogue">Epilogue</option>
                   </optgroup>
-                  <optgroup label="Mono / carácter">
+                  <optgroup label="Mono / caráter">
                     <option value="IBM Plex Mono">IBM Plex Mono</option>
                     <option value="Special Elite">Special Elite</option>
                     <option value="Courier Prime">Courier Prime</option>
                   </optgroup>
                 </select>
               </div>
-              <input value="{{ fc.title }}" onChange="{{ fc.onTitleChange }}" aria-label="Texto de prueba del título" style="{{ fc.titleStyle }}" />
+              <input value="{{ fc.title }}" onChange="{{ fc.onTitleChange }}" aria-label="Texto de teste do título" style="{{ fc.titleStyle }}" />
             </div>
 
             <div style="margin-bottom:18px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#A6A195;">Copy</span>
-                <select value="{{ fc.copyFamily }}" onChange="{{ fc.onCopyFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid #DDDAD1;border-radius:8px;background:#fff;color:#221F1A;cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);">Copy</span>
+                <select value="{{ fc.copyFamily }}" onChange="{{ fc.onCopyFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:var(--ink);" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;">
                   <optgroup label="Serif">
                     <option value="Fraunces">Fraunces</option>
                     <option value="Playfair Display">Playfair Display</option>
@@ -182,20 +196,20 @@
                     <option value="Public Sans">Public Sans</option>
                     <option value="Epilogue">Epilogue</option>
                   </optgroup>
-                  <optgroup label="Mono / carácter">
+                  <optgroup label="Mono / caráter">
                     <option value="IBM Plex Mono">IBM Plex Mono</option>
                     <option value="Special Elite">Special Elite</option>
                     <option value="Courier Prime">Courier Prime</option>
                   </optgroup>
                 </select>
               </div>
-              <input value="{{ fc.copy }}" onChange="{{ fc.onCopyChange }}" aria-label="Texto de prueba del copy" style="{{ fc.copyStyle }}" />
+              <input value="{{ fc.copy }}" onChange="{{ fc.onCopyChange }}" aria-label="Texto de teste do copy" style="{{ fc.copyStyle }}" />
             </div>
 
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#A6A195;">Cuerpo</span>
-                <select value="{{ fc.bodyFamily }}" onChange="{{ fc.onBodyFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid #DDDAD1;border-radius:8px;background:#fff;color:#221F1A;cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);">Corpo</span>
+                <select value="{{ fc.bodyFamily }}" onChange="{{ fc.onBodyFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:var(--ink);" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;">
                   <optgroup label="Serif">
                     <option value="Fraunces">Fraunces</option>
                     <option value="Playfair Display">Playfair Display</option>
@@ -215,47 +229,47 @@
                     <option value="Public Sans">Public Sans</option>
                     <option value="Epilogue">Epilogue</option>
                   </optgroup>
-                  <optgroup label="Mono / carácter">
+                  <optgroup label="Mono / caráter">
                     <option value="IBM Plex Mono">IBM Plex Mono</option>
                     <option value="Special Elite">Special Elite</option>
                     <option value="Courier Prime">Courier Prime</option>
                   </optgroup>
                 </select>
               </div>
-              <textarea value="{{ fc.body }}" onChange="{{ fc.onBodyChange }}" rows="3" aria-label="Texto de prueba del cuerpo" style="{{ fc.bodyStyle }}"></textarea>
+              <textarea value="{{ fc.body }}" onChange="{{ fc.onBodyChange }}" rows="3" aria-label="Texto de teste do corpo" style="{{ fc.bodyStyle }}"></textarea>
             </div>
           </div>
         </sc-for>
       </div>
     </section>
 
-    <section style="padding:96px 64px 140px;border-top:1px solid #DDDAD1;position:relative;">
-      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">04</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Aplicaciones</div>
-      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Donde la marca vive</h2>
-      <p style="max-width:60ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Tarjetas, señalética, certificados de autenticidad, packaging, papelería. Traé fotos de cada pieza que la identidad va a tener que resolver.</p>
+    <section style="padding:96px 64px 140px;border-top:1px solid var(--line);position:relative;">
+      <div aria-hidden="true" style="position:absolute;top:20px;left:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">04</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Aplicações</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Onde a marca vive</h2>
+      <p style="max-width:60ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Cartões, sinalização, certificados de autenticidade, embalagens, papelaria. Traga fotos de cada peça que a identidade vai precisar resolver.</p>
 
       <div data-noprint="true" style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
-        <label style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;padding:10px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;display:inline-block;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);">
-          Traer imágenes
+        <label style="font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--on-dark);padding:10px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;display:inline-block;" style-hover="background:var(--btn-hover);transform:translateY(-1px);" style-active="transform:scale(0.97);">
+          Trazer imagens
           <input type="file" accept="image/*" multiple="" onChange="{{ onUploadApplications }}" style="display:none;" />
         </label>
-        <input type="text" placeholder="…o pegá una URL de imagen" value="{{ appUrlDraft }}" onChange="{{ onAppUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid #DDDAD1;border-radius:999px;font-size:13px;width:230px;background:#FBFAF6;color:#221F1A;transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;" />
-        <button onClick="{{ onAddAppUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #DDDAD1;color:#221F1A;padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:#221F1A;" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Sumar al tablero</button>
-        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#A6A195;">Ctrl+V también funciona acá</span>
+        <input type="text" placeholder="…ou cole uma URL de imagem" value="{{ appUrlDraft }}" onChange="{{ onAppUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;width:230px;background:var(--surface);color:var(--ink);transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;" />
+        <button onClick="{{ onAddAppUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid var(--line);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:var(--ink);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Adicionar ao painel</button>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--text-3);">Ctrl+V também funciona aqui</span>
       </div>
 
-      <div ref="{{ applicationsRef }}" onMouseEnter="{{ setActiveApplications }}" style="position:relative;min-height:520px;background:#FBFAF6;border:1px solid #DDDAD1;border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
+      <div ref="{{ applicationsRef }}" onMouseEnter="{{ setActiveApplications }}" style="position:relative;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
         <sc-for list="{{ applicationImages }}" as="img" hint-placeholder-count="1">
           <div style="{{ img.style }}">
             <sc-if value="{{ img.hasUrl }}" hint-placeholder-val="{{ false }}">
               <div style="background:#fff;padding:8px 8px 22px;box-shadow:0 6px 18px rgba(34,31,26,0.16);border-radius:2px;transition:box-shadow 200ms ease-out;">
-                <img ref="{{ img.imgRef }}" data-sample-img="true" data-img-id="{{ img.id }}" data-img-section="applications" alt="Aplicación de la marca" style="display:block;width:100%;height:auto;pointer-events:none;user-select:none;" />
+                <img ref="{{ img.imgRef }}" data-sample-img="true" data-img-id="{{ img.id }}" data-img-section="applications" alt="Aplicação da marca" style="display:block;width:100%;height:auto;pointer-events:none;user-select:none;" />
               </div>
             </sc-if>
             <div onPointerDown="{{ img.onDragStart }}" style="position:absolute;inset:0 0 22px 0;cursor:grab;" style-active="cursor:grabbing;"></div>
-            <div onPointerDown="{{ img.onResizeStart }}" title="Estirá para cambiar el tamaño" style="position:absolute;right:-6px;bottom:16px;width:14px;height:14px;background:#2680AD;border-radius:4px;cursor:nwse-resize;opacity:0.45;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.15);"></div>
-            <button data-noprint="true" onClick="{{ img.onDelete }}" aria-label="Sacar esta imagen" title="Sacar esta imagen" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:#221F1A;color:#F1F0EB;border:none;font-size:12px;cursor:pointer;line-height:1;opacity:0.4;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.12);" style-focus="outline:none;opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px #2680AD;">×</button>
+            <div onPointerDown="{{ img.onResizeStart }}" title="Estique para mudar o tamanho" style="position:absolute;right:-6px;bottom:16px;width:14px;height:14px;background:var(--accent);border-radius:4px;cursor:nwse-resize;opacity:0.45;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.15);"></div>
+            <button data-noprint="true" onClick="{{ img.onDelete }}" aria-label="Remover esta imagem" title="Remover esta imagem" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--on-dark);border:none;font-size:12px;cursor:pointer;line-height:1;opacity:0.4;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.12);" style-focus="outline:none;opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--accent);">×</button>
           </div>
         </sc-for>
       </div>
@@ -264,16 +278,16 @@
     <div style="position:absolute;inset:0;pointer-events:none;z-index:60;">
       <sc-for list="{{ notesR }}" as="n" hint-placeholder-count="1">
         <div style="{{ n.style }}pointer-events:auto;box-shadow:0 8px 20px rgba(34,31,26,0.22);padding:16px 14px 14px;animation:popIn 260ms cubic-bezier(0.34,1.56,0.64,1) both;">
-          <div onPointerDown="{{ n.onDragStart }}" data-noprint="true" title="Agarrá y llevame a donde quieras" style="height:14px;margin:-16px -14px 8px;cursor:grab;" style-active="cursor:grabbing;"></div>
-          <button data-noprint="true" onClick="{{ n.onDelete }}" aria-label="Tirar esta nota" title="Tirar esta nota" style="position:absolute;top:4px;right:6px;background:none;border:none;font-size:13px;cursor:pointer;color:#00000059;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:#000000cc;transform:scale(1.2);" style-focus="outline:none;box-shadow:0 0 0 2px #2680AD;border-radius:4px;">×</button>
-          <textarea value="{{ n.text }}" onChange="{{ n.onTextChange }}" placeholder="Anotá lo que se te cruce…" rows="4" aria-label="Nota" style="width:100%;border:none;background:transparent;resize:none;outline:none;font-family:'Caveat',cursive;font-size:18px;line-height:1.25;color:#221F1A;"></textarea>
+          <div onPointerDown="{{ n.onDragStart }}" data-noprint="true" title="Pegue e me leve para onde quiser" style="height:14px;margin:-16px -14px 8px;cursor:grab;" style-active="cursor:grabbing;"></div>
+          <button data-noprint="true" onClick="{{ n.onDelete }}" aria-label="Descartar esta nota" title="Descartar esta nota" style="position:absolute;top:4px;right:6px;background:none;border:none;font-size:13px;cursor:pointer;color:#00000059;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:#000000cc;transform:scale(1.2);" style-focus="outline:none;box-shadow:0 0 0 2px var(--accent);border-radius:4px;">×</button>
+          <textarea value="{{ n.text }}" onChange="{{ n.onTextChange }}" placeholder="Anote o que vier à cabeça…" rows="4" aria-label="Nota" style="width:100%;border:none;background:transparent;resize:none;outline:none;font-family:'Caveat',cursive;font-size:18px;line-height:1.25;color:var(--ink);"></textarea>
         </div>
       </sc-for>
     </div>
 
   </div>
 
-  <button data-noprint="true" onClick="{{ addNote }}" aria-label="Dejar una nota" title="Dejar una nota donde estés mirando" style="position:fixed;bottom:32px;right:32px;width:56px;height:56px;border-radius:50%;background:#C2542F;color:#F1F0EB;border:none;font-size:26px;cursor:pointer;box-shadow:0 8px 22px rgba(194,84,47,0.4);z-index:200;transition:transform 220ms cubic-bezier(0.34,1.56,0.64,1),background 160ms ease-out;" style-hover="transform:rotate(90deg) scale(1.06);background:#a84525;" style-active="transform:scale(0.92);" style-focus="outline:none;box-shadow:0 0 0 3px #F1F0EB,0 0 0 5px #2680AD;">+</button>
+  <button data-noprint="true" onClick="{{ addNote }}" aria-label="Deixar uma nota" title="Deixe uma nota onde você está olhando" style="position:fixed;bottom:32px;right:32px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-dark);border:none;font-size:26px;cursor:pointer;box-shadow:0 8px 22px rgba(194,84,47,0.4);z-index:200;transition:transform 220ms cubic-bezier(0.34,1.56,0.64,1),background 160ms ease-out;" style-hover="transform:rotate(90deg) scale(1.06);background:var(--accent-ink);" style-active="transform:scale(0.92);" style-focus="outline:none;box-shadow:0 0 0 3px var(--on-dark),0 0 0 5px var(--accent);">+</button>
 
 </div>
 
@@ -294,6 +308,13 @@ function placeholderSvg(label){
   </svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
+
+const FONT_GENERIC = {
+  'Fraunces':'serif','Playfair Display':'serif','Cormorant Garamond':'serif','DM Serif Display':'serif','Spectral':'serif','Bodoni Moda':'serif','Libre Caslon Text':'serif','Instrument Serif':'serif',
+  'Work Sans':'sans-serif','Space Grotesk':'sans-serif','Archivo':'sans-serif','Manrope':'sans-serif','Sora':'sans-serif','Public Sans':'sans-serif','Epilogue':'sans-serif',
+  'IBM Plex Mono':'monospace','Special Elite':'monospace','Courier Prime':'monospace'
+};
+function genericFor(family){ return FONT_GENERIC[family] || 'sans-serif'; }
 
 function oklchToHex(l, c, h){
   try{
@@ -333,31 +354,31 @@ function hexToHue(hex){
 
 function nameForColor(hex){
   const hsl = hexToHsl(hex);
-  if (!hsl) return 'Color';
+  if (!hsl) return 'Cor';
   const { h, s, l } = hsl;
   if (s < 0.08){
-    if (l > 0.85) return 'Chalk';
-    if (l > 0.65) return 'Bone';
-    if (l > 0.45) return 'Stone';
-    if (l > 0.25) return 'Ash';
-    return 'Ink';
+    if (l > 0.85) return 'Giz';
+    if (l > 0.65) return 'Osso';
+    if (l > 0.45) return 'Pedra';
+    if (l > 0.25) return 'Cinza';
+    return 'Tinta';
   }
-  let noun;
-  if (h < 15 || h >= 345) noun = 'Rose';
-  else if (h < 45) noun = 'Clay';
-  else if (h < 70) noun = 'Ochre';
-  else if (h < 150) noun = 'Moss';
-  else if (h < 200) noun = 'Teal';
-  else if (h < 250) noun = 'Denim';
-  else if (h < 290) noun = 'Plum';
-  else noun = 'Berry';
+  let noun, gender;
+  if (h < 15 || h >= 345){ noun = 'Rosa'; gender = 'f'; }
+  else if (h < 45){ noun = 'Argila'; gender = 'f'; }
+  else if (h < 70){ noun = 'Ocre'; gender = 'm'; }
+  else if (h < 150){ noun = 'Musgo'; gender = 'm'; }
+  else if (h < 200){ noun = 'Turquesa'; gender = 'f'; }
+  else if (h < 250){ noun = 'Índigo'; gender = 'm'; }
+  else if (h < 290){ noun = 'Ameixa'; gender = 'f'; }
+  else { noun = 'Amora'; gender = 'f'; }
   let mod;
-  if (l > 0.8) mod = 'Pale ';
-  else if (l > 0.6) mod = 'Warm ';
-  else if (l > 0.4) mod = 'Deep ';
-  else mod = 'Dark ';
-  if (s < 0.25) mod = mod === 'Dark ' ? 'Muted ' : 'Soft ';
-  return mod + noun;
+  if (l > 0.8) mod = gender === 'f' ? 'Clara' : 'Claro';
+  else if (l > 0.6) mod = 'Quente';
+  else if (l > 0.4) mod = gender === 'f' ? 'Profunda' : 'Profundo';
+  else mod = gender === 'f' ? 'Escura' : 'Escuro';
+  if (s < 0.25) mod = 'Suave';
+  return noun + ' ' + mod;
 }
 
 function classifyRole(hex){
@@ -416,29 +437,29 @@ function buildInitialState(){
   return {
     images: {
       concept: [
-        {id:uid('img'), url:placeholderSvg('Referencia visual'), x:40, y:40, w:280, rot:-1.5},
-        {id:uid('img'), url:placeholderSvg('Marca que te guste'), x:360, y:90, w:260, rot:1.2}
+        {id:uid('img'), url:placeholderSvg('Referência visual'), x:40, y:40, w:280, rot:-1.5},
+        {id:uid('img'), url:placeholderSvg('Marca que você curta'), x:360, y:90, w:260, rot:1.2}
       ],
       applications: [
-        {id:uid('img'), url:placeholderSvg('Foto de aplicación (tarjeta, señalética...)'), x:40, y:40, w:300, rot:-1}
+        {id:uid('img'), url:placeholderSvg('Foto de aplicação (cartão, sinalização...)'), x:40, y:40, w:300, rot:-1}
       ]
     },
     colors: [
-      {id:uid('col'), hex:'#F6F1E7', name:'Chalk', role:'neutral', locked:false},
-      {id:uid('col'), hex:'#EDE3D0', name:'Bone', role:'neutral', locked:false},
-      {id:uid('col'), hex:'#B9A88F', name:'Warm Stone', role:'neutral', locked:false},
-      {id:uid('col'), hex:'#4A423A', name:'Dark Ash', role:'neutral', locked:false},
-      {id:uid('col'), hex:'#8C3B2E', name:'Deep Terracotta', role:'deep', locked:false},
-      {id:uid('col'), hex:'#2F4538', name:'Deep Moss', role:'deep', locked:false},
-      {id:uid('col'), hex:'#D9A441', name:'Warm Ochre', role:'accent', locked:false}
+      {id:uid('col'), hex:'#F6F1E7', name:'Giz', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#EDE3D0', name:'Osso', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#B9A88F', name:'Pedra Quente', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#4A423A', name:'Cinza Escura', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#8C3B2E', name:'Terracota Profunda', role:'deep', locked:false},
+      {id:uid('col'), hex:'#2F4538', name:'Musgo Profundo', role:'deep', locked:false},
+      {id:uid('col'), hex:'#D9A441', name:'Ocre Quente', role:'accent', locked:false}
     ],
     fontCards: [
-      {id:uid('fc'), titleFamily:'Fraunces', copyFamily:'Work Sans', bodyFamily:'Work Sans', title:'Cavall Màgic', copy:'Atelier de Lucas Lopes', body:'Producción propia, clases y talleres en el corazón de Sant Antoni.'},
-      {id:uid('fc'), titleFamily:'Playfair Display', copyFamily:'Space Grotesk', bodyFamily:'Public Sans', title:'Cavall Màgic', copy:'Talleres y clases', body:'Producción propia, clases y talleres en el corazón de Sant Antoni.'},
-      {id:uid('fc'), titleFamily:'Special Elite', copyFamily:'IBM Plex Mono', bodyFamily:'Courier Prime', title:'Cavall Màgic', copy:'Certificado de autenticidad', body:'Producción propia, clases y talleres en el corazón de Sant Antoni.'}
+      {id:uid('fc'), titleFamily:'Fraunces', copyFamily:'Work Sans', bodyFamily:'Work Sans', title:'Cavall Màgic', copy:'Atelier de Lucas Lopes', body:'Produção própria, aulas e oficinas no coração de Sant Antoni.'},
+      {id:uid('fc'), titleFamily:'Playfair Display', copyFamily:'Space Grotesk', bodyFamily:'Public Sans', title:'Cavall Màgic', copy:'Oficinas e aulas', body:'Produção própria, aulas e oficinas no coração de Sant Antoni.'},
+      {id:uid('fc'), titleFamily:'Special Elite', copyFamily:'IBM Plex Mono', bodyFamily:'Courier Prime', title:'Cavall Màgic', copy:'Certificado de autenticidade', body:'Produção própria, aulas e oficinas no coração de Sant Antoni.'}
     ],
     notes: [
-      {id:uid('note'), x:900, y:30, text:'Agarrame y llevame a donde quieras ✎', color:'#EFE3B8', rot:-3}
+      {id:uid('note'), x:900, y:30, text:'Pegue e me leve para onde quiser ✎', color:'#EFE3B8', rot:-3}
     ],
     newColorHex: '#8C3B2E',
     conceptUrlDraft: '',
@@ -500,7 +521,7 @@ class Component extends DCLogic {
         if (item && item.url && item.url.indexOf('data:') === 0){
           this.deleteImage(section, id);
         } else {
-          this.updateImage(section, id, { url: placeholderSvg('No pudimos cargar esa URL — probá descargarla y subirla') });
+          this.updateImage(section, id, { url: placeholderSvg('Não foi possível carregar essa URL — tente baixar e subir a imagem') });
           this.save();
         }
       }
@@ -653,7 +674,7 @@ class Component extends DCLogic {
   }
 
   addFontCard(){
-    this.setState(s => ({ fontCards: [...s.fontCards, { id: uid('fc'), titleFamily: 'Work Sans', copyFamily: 'Work Sans', bodyFamily: 'Work Sans', title: 'Cavall Màgic', copy: 'Escribí un copy de prueba', body: 'Texto de cuerpo para ver cómo respira la fuente en párrafos largos.' }] }), () => this.save());
+    this.setState(s => ({ fontCards: [...s.fontCards, { id: uid('fc'), titleFamily: 'Work Sans', copyFamily: 'Work Sans', bodyFamily: 'Work Sans', title: 'Cavall Màgic', copy: 'Escreva um copy de teste', body: 'Texto de corpo para ver como a fonte respira em parágrafos longos.' }] }), () => this.save());
   }
 
   updateFontCard(id, field, value){
@@ -668,7 +689,7 @@ class Component extends DCLogic {
     const idx = (this.state.pairIdx || 0) % PAIR_SETS.length;
     const [titleFamily, copyFamily, bodyFamily] = PAIR_SETS[idx];
     this.setState(s => ({
-      fontCards: [...s.fontCards, { id: uid('fc'), titleFamily, copyFamily, bodyFamily, title: 'Cavall Màgic', copy: 'Atelier de Lucas Lopes', body: 'Producción propia, clases y talleres en el corazón de Sant Antoni.' }],
+      fontCards: [...s.fontCards, { id: uid('fc'), titleFamily, copyFamily, bodyFamily, title: 'Cavall Màgic', copy: 'Atelier de Lucas Lopes', body: 'Produção própria, aulas e oficinas no coração de Sant Antoni.' }],
       pairIdx: idx + 1
     }), () => this.save());
   }
@@ -690,11 +711,11 @@ class Component extends DCLogic {
     const colorCards = s.colors.map((c, i) => ({
       ...c,
       cardStyle: `animation:${anim} 320ms cubic-bezier(0.22,1,0.36,1) both;animation-delay:${i*45}ms;`,
-      swatchStyle: `background:${c.hex};width:110px;height:110px;border-radius:50%;margin-bottom:18px;transition:transform 240ms cubic-bezier(0.34,1.56,0.64,1),box-shadow 200ms ease-out;box-shadow:${c.locked ? 'inset 0 0 0 1px rgba(0,0,0,0.06), 0 0 0 3px #FBFAF6, 0 0 0 5px #2680AD' : 'inset 0 0 0 1px rgba(0,0,0,0.06)'};`,
-      lockLabel: c.locked ? '● Fijado' : '○ Fijar',
+      swatchStyle: `background:${c.hex};width:110px;height:110px;border-radius:50%;margin-bottom:18px;transition:transform 240ms cubic-bezier(0.34,1.56,0.64,1),box-shadow 200ms ease-out;box-shadow:${c.locked ? 'inset 0 0 0 1px rgba(0,0,0,0.06), 0 0 0 3px var(--surface), 0 0 0 5px var(--accent)' : 'inset 0 0 0 1px rgba(0,0,0,0.06)'};`,
+      lockLabel: c.locked ? '● Fixada' : '○ Fixar',
       lockStyle: c.locked
-        ? `font-family:'Space Grotesk',sans-serif;background:none;border:none;color:#2680AD;font-size:11px;font-weight:700;cursor:pointer;transition:color 140ms ease-out;`
-        : `font-family:'Space Grotesk',sans-serif;background:none;border:none;color:#A6A195;font-size:11px;cursor:pointer;transition:color 140ms ease-out;`,
+        ? `font-family:'Space Grotesk',sans-serif;background:none;border:none;color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;transition:color 140ms ease-out;`
+        : `font-family:'Space Grotesk',sans-serif;background:none;border:none;color:var(--text-3);font-size:11px;cursor:pointer;transition:color 140ms ease-out;`,
       onNameChange: (e) => this.updateColorField(c.id, 'name', e.target.value),
       onToggleLock: () => this.toggleLock(c.id),
       onDelete: () => this.deleteColor(c.id)
@@ -702,9 +723,9 @@ class Component extends DCLogic {
 
     const fontCards = s.fontCards.map(fc => ({
       ...fc,
-      titleStyle: `font-family:'${fc.titleFamily || 'Fraunces'}',serif;font-weight:700;font-size:28px;color:#221F1A;margin:0;border:none;background:transparent;width:100%;outline:none;padding:0;display:block;border-radius:6px;`,
-      copyStyle: `font-family:'${fc.copyFamily || 'Work Sans'}',serif;font-weight:500;font-size:15px;color:#6E6A5E;margin:0;border:none;background:transparent;width:100%;outline:none;padding:0;display:block;border-radius:6px;`,
-      bodyStyle: `font-family:'${fc.bodyFamily || 'Work Sans'}',serif;font-weight:400;font-size:13px;line-height:1.6;color:#55524A;border:none;background:transparent;width:100%;resize:vertical;outline:none;padding:0;border-radius:6px;`,
+      titleStyle: `font-family:'${fc.titleFamily || 'Fraunces'}',${genericFor(fc.titleFamily || 'Fraunces')};font-weight:700;font-size:28px;color:var(--ink);margin:0;border:none;background:transparent;width:100%;outline:none;padding:0;display:block;border-radius:6px;`,
+      copyStyle: `font-family:'${fc.copyFamily || 'Work Sans'}',${genericFor(fc.copyFamily || 'Work Sans')};font-weight:500;font-size:15px;color:var(--text-2);margin:0;border:none;background:transparent;width:100%;outline:none;padding:0;display:block;border-radius:6px;`,
+      bodyStyle: `font-family:'${fc.bodyFamily || 'Work Sans'}',${genericFor(fc.bodyFamily || 'Work Sans')};font-weight:400;font-size:13px;line-height:1.6;color:#55524A;border:none;background:transparent;width:100%;resize:vertical;outline:none;padding:0;border-radius:6px;`,
       onTitleFamilyChange: (e) => this.updateFontCard(fc.id, 'titleFamily', e.target.value),
       onCopyFamilyChange: (e) => this.updateFontCard(fc.id, 'copyFamily', e.target.value),
       onBodyFamilyChange: (e) => this.updateFontCard(fc.id, 'bodyFamily', e.target.value),
