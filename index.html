@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&family=DM+Serif+Display:wght@400&family=Spectral:wght@400;600;700&family=Bodoni+Moda:wght@400;600;700&family=Libre+Caslon+Text:wght@400;700&family=Instrument+Serif:wght@400&family=Work+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;600;700&family=Manrope:wght@400;600;700&family=Sora:wght@400;600;700&family=Public+Sans:wght@400;600;700&family=Epilogue:wght@400;600;700&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#EFEEE9;}
+  ::selection{background:#2680AD2e;}
+  a{color:#2680AD;}
+  a:hover{color:#1c6489;}
+  @keyframes fadeUpA{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeUpB{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes popIn{from{opacity:0;transform:scale(0.85) rotate(-6deg);}to{opacity:1;transform:scale(1) rotate(0deg);}}
+  @media print{
+    [data-noprint]{display:none !important;}
+    body{background:#fff;}
+  }
+</style>
+</helmet>
+<div style="font-family:Helvetica,Arial,sans-serif;color:#221F1A;background:transparent;min-height:100vh;">
+
+  <div aria-hidden="true" data-noprint="true" style="position:fixed;inset:0;pointer-events:none;z-index:500;opacity:0.16;background-image:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22240%22%20height=%22240%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.8%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20type=%22saturate%22%20values=%220%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23n)%22%20opacity=%220.4%22/%3E%3C/svg%3E');"></div>
+
+  <div style="position:sticky;top:0;z-index:100;background:#F1F0EBe6;backdrop-filter:blur(8px);border-bottom:1px solid #DDDAD1;padding:14px 64px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;">
+    <div style="display:flex;align-items:baseline;gap:16px;">
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-0.3px;">Cavall Màgic</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7C7261;">Tablero de identidad</div>
+    </div>
+    <button data-noprint="true" onClick="{{ exportPdf }}" title="Genera un PDF con todo el tablero tal como se ve" style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;border:none;padding:10px 22px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:0.3px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Descargar el tablero (PDF)</button>
+  </div>
+
+  <section style="padding:110px 64px 80px;max-width:900px;">
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:20px;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) both;">Atelier · Sant Antoni · Barcelona</div>
+    <h1 style="font-family:'Fraunces',serif;font-size:58px;font-weight:600;line-height:1.05;letter-spacing:-1px;margin:0 0 26px;max-width:16ch;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 80ms both;">Una identidad viva empieza acá.</h1>
+    <p style="font-size:17px;line-height:1.65;color:#6E6A5E;margin:0 0 48px;max-width:56ch;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 160ms both;">Este tablero junta todo lo que Cavall Màgic quiere ser: referencias, colores, tipografías y las piezas donde la marca va a vivir. Pegá, arrastrá, anotá — nada se pierde y nada está mal. Tu trabajo queda guardado en este navegador.</p>
+    <div style="display:flex;gap:48px;flex-wrap:wrap;border-top:1px solid #DDDAD1;padding-top:28px;animation:fadeUpA 480ms cubic-bezier(0.22,1,0.36,1) 240ms both;">
+      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#C2542F;font-weight:600;margin-bottom:8px;">01</div><div style="font-size:14px;color:#6E6A5E;line-height:1.5;">Juntá referencias e ideas que te muevan algo</div></div>
+      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#C2542F;font-weight:600;margin-bottom:8px;">02</div><div style="font-size:14px;color:#6E6A5E;line-height:1.5;">Definí paleta y tipografías con calma</div></div>
+      <div style="max-width:210px;"><div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#C2542F;font-weight:600;margin-bottom:8px;">03</div><div style="font-size:14px;color:#6E6A5E;line-height:1.5;">Sumá las piezas donde la marca va a aparecer</div></div>
+    </div>
+  </section>
+
+  <div ref="{{ notesWrapRef }}" style="position:relative;">
+
+    <section style="padding:96px 64px;border-top:1px solid #DDDAD1;position:relative;">
+      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">01</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Concepto y dirección</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Lo que la marca quiere ser</h2>
+      <p style="max-width:60ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Pegá referencias visuales, marcas que te inspiren y conceptos sueltos. No buscamos un logo único, sino un tono y un mundo de formas con variantes según dónde aparezcan.</p>
+
+      <div data-noprint="true" style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
+        <label style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;padding:10px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;display:inline-block;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);">
+          Traer imágenes
+          <input type="file" accept="image/*" multiple="" onChange="{{ onUploadConcept }}" style="display:none;" />
+        </label>
+        <input type="text" placeholder="…o pegá una URL de imagen" value="{{ conceptUrlDraft }}" onChange="{{ onConceptUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid #DDDAD1;border-radius:999px;font-size:13px;width:230px;background:#FBFAF6;color:#221F1A;transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;" />
+        <button onClick="{{ onAddConceptUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #DDDAD1;color:#221F1A;padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:#221F1A;" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Sumar al tablero</button>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#A6A195;">y si tenés algo copiado, Ctrl+V acá arriba alcanza</span>
+      </div>
+
+      <div ref="{{ conceptRef }}" onMouseEnter="{{ setActiveConcept }}" style="position:relative;min-height:640px;background:#FBFAF6;border:1px solid #DDDAD1;border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
+        <sc-for list="{{ conceptImages }}" as="img" hint-placeholder-count="2">
+          <div style="{{ img.style }}">
+            <sc-if value="{{ img.hasUrl }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#fff;padding:8px 8px 22px;box-shadow:0 6px 18px rgba(34,31,26,0.16);border-radius:2px;transition:box-shadow 200ms ease-out;">
+                <img ref="{{ img.imgRef }}" data-sample-img="true" data-img-id="{{ img.id }}" data-img-section="concept" alt="Referencia del moodboard" style="display:block;width:100%;height:auto;pointer-events:none;user-select:none;" />
+              </div>
+            </sc-if>
+            <div onPointerDown="{{ img.onDragStart }}" style="position:absolute;inset:0 0 22px 0;cursor:grab;" style-active="cursor:grabbing;"></div>
+            <div onPointerDown="{{ img.onResizeStart }}" title="Estirá para cambiar el tamaño" style="position:absolute;right:-6px;bottom:16px;width:14px;height:14px;background:#2680AD;border-radius:4px;cursor:nwse-resize;opacity:0.45;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.15);"></div>
+            <button data-noprint="true" onClick="{{ img.onDelete }}" aria-label="Sacar esta imagen" title="Sacar esta imagen" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:#221F1A;color:#F1F0EB;border:none;font-size:12px;cursor:pointer;line-height:1;opacity:0.4;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.12);" style-focus="outline:none;opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px #2680AD;">×</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:96px 64px;border-top:1px solid #DDDAD1;position:relative;">
+      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">02</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Paleta de colores</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Los colores de la casa</h2>
+      <p style="max-width:62ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Entre cinco y ocho colores que funcionen en todas las piezas. Elegí los tuyos con el selector, o pedime una propuesta — fijá los que quieras conservar y yo cambio el resto.</p>
+
+      <div data-noprint="true" style="display:flex;gap:10px;align-items:center;margin-bottom:30px;flex-wrap:wrap;">
+        <input type="color" value="{{ newColorHex }}" onChange="{{ onNewColorHexChange }}" title="Elegí un color" style="width:52px;height:42px;border:1px solid #DDDAD1;border-radius:12px;padding:3px;cursor:pointer;background:#FBFAF6;transition:border-color 160ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;" />
+        <button onClick="{{ onAddColor }}" style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;border:none;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Sumar este color</button>
+        <button onClick="{{ suggestPalette }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #2680AD;color:#2680AD;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out,color 160ms ease-out;" style-hover="background:#2680AD;color:#F1F0EB;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Proponeme una paleta</button>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#A6A195;">cada propuesta es distinta — insistí sin culpa</span>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:18px;">
+        <sc-for list="{{ colorCards }}" as="c" hint-placeholder-count="6">
+          <div style="{{ c.cardStyle }}width:180px;background:#FBFAF6;border:1px solid #E5E2D9;border-radius:20px;padding:26px 14px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
+            <div style="{{ c.swatchStyle }}"></div>
+            <input value="{{ c.name }}" onChange="{{ c.onNameChange }}" aria-label="Nombre del color" style="width:100%;text-align:center;border:none;background:transparent;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:0;outline:none;color:#221F1A;border-radius:6px;" style-focus="box-shadow:0 0 0 2px #2680AD44;" />
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#A6A195;text-transform:uppercase;margin-top:5px;">{{ c.hex }}</span>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:16px;">
+              <button data-noprint="true" onClick="{{ c.onToggleLock }}" title="Un color fijado no cambia cuando pedís otra propuesta" style="{{ c.lockStyle }}" style-focus="outline:none;box-shadow:0 0 0 2px #FBFAF6,0 0 0 4px #2680AD;border-radius:4px;">{{ c.lockLabel }}</button>
+              <button data-noprint="true" onClick="{{ c.onDelete }}" style="font-family:'Space Grotesk',sans-serif;background:none;border:none;color:#A6A195;font-size:11px;cursor:pointer;text-decoration:underline;transition:color 140ms ease-out;" style-hover="color:#C2542F;" style-focus="outline:none;box-shadow:0 0 0 2px #FBFAF6,0 0 0 4px #2680AD;border-radius:4px;">sacar</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:96px 64px;border-top:1px solid #DDDAD1;position:relative;">
+      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">03</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Tipografías</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Cómo suena por escrito</h2>
+      <p style="max-width:62ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Cada tarjeta es un juego completo: una fuente para el título, otra para el copy y otra para el cuerpo. Los logotipos van por su propio camino — esto es para los textos de todos los días.</p>
+
+      <div data-noprint="true" style="display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;">
+        <button onClick="{{ addFontCard }}" style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;border:none;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Nueva prueba en blanco</button>
+        <button onClick="{{ suggestFonts }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #2680AD;color:#2680AD;padding:11px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out,color 160ms ease-out;" style-hover="background:#2680AD;color:#F1F0EB;transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Dame otra combinación</button>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:22px;">
+        <sc-for list="{{ fontCards }}" as="fc" hint-placeholder-count="3">
+          <div style="width:340px;background:#FBFAF6;border:1px solid #E5E2D9;border-radius:20px;padding:28px;position:relative;animation:fadeUpA 320ms cubic-bezier(0.22,1,0.36,1) both;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
+            <button data-noprint="true" onClick="{{ fc.onDelete }}" aria-label="Sacar esta prueba" title="Sacar esta prueba" style="position:absolute;top:12px;right:14px;background:none;border:none;color:#A6A195;font-size:16px;cursor:pointer;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:#C2542F;transform:scale(1.15);" style-focus="outline:none;box-shadow:0 0 0 2px #FBFAF6,0 0 0 4px #2680AD;border-radius:4px;">×</button>
+
+            <div style="margin-bottom:18px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#A6A195;">Título</span>
+                <select value="{{ fc.titleFamily }}" onChange="{{ fc.onTitleFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid #DDDAD1;border-radius:8px;background:#fff;color:#221F1A;cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;">
+                  <optgroup label="Serif">
+                    <option value="Fraunces">Fraunces</option>
+                    <option value="Playfair Display">Playfair Display</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond</option>
+                    <option value="DM Serif Display">DM Serif Display</option>
+                    <option value="Spectral">Spectral</option>
+                    <option value="Bodoni Moda">Bodoni Moda</option>
+                    <option value="Libre Caslon Text">Libre Caslon Text</option>
+                    <option value="Instrument Serif">Instrument Serif</option>
+                  </optgroup>
+                  <optgroup label="Sans">
+                    <option value="Work Sans">Work Sans</option>
+                    <option value="Space Grotesk">Space Grotesk</option>
+                    <option value="Archivo">Archivo</option>
+                    <option value="Manrope">Manrope</option>
+                    <option value="Sora">Sora</option>
+                    <option value="Public Sans">Public Sans</option>
+                    <option value="Epilogue">Epilogue</option>
+                  </optgroup>
+                  <optgroup label="Mono / carácter">
+                    <option value="IBM Plex Mono">IBM Plex Mono</option>
+                    <option value="Special Elite">Special Elite</option>
+                    <option value="Courier Prime">Courier Prime</option>
+                  </optgroup>
+                </select>
+              </div>
+              <input value="{{ fc.title }}" onChange="{{ fc.onTitleChange }}" aria-label="Texto de prueba del título" style="{{ fc.titleStyle }}" />
+            </div>
+
+            <div style="margin-bottom:18px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#A6A195;">Copy</span>
+                <select value="{{ fc.copyFamily }}" onChange="{{ fc.onCopyFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid #DDDAD1;border-radius:8px;background:#fff;color:#221F1A;cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;">
+                  <optgroup label="Serif">
+                    <option value="Fraunces">Fraunces</option>
+                    <option value="Playfair Display">Playfair Display</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond</option>
+                    <option value="DM Serif Display">DM Serif Display</option>
+                    <option value="Spectral">Spectral</option>
+                    <option value="Bodoni Moda">Bodoni Moda</option>
+                    <option value="Libre Caslon Text">Libre Caslon Text</option>
+                    <option value="Instrument Serif">Instrument Serif</option>
+                  </optgroup>
+                  <optgroup label="Sans">
+                    <option value="Work Sans">Work Sans</option>
+                    <option value="Space Grotesk">Space Grotesk</option>
+                    <option value="Archivo">Archivo</option>
+                    <option value="Manrope">Manrope</option>
+                    <option value="Sora">Sora</option>
+                    <option value="Public Sans">Public Sans</option>
+                    <option value="Epilogue">Epilogue</option>
+                  </optgroup>
+                  <optgroup label="Mono / carácter">
+                    <option value="IBM Plex Mono">IBM Plex Mono</option>
+                    <option value="Special Elite">Special Elite</option>
+                    <option value="Courier Prime">Courier Prime</option>
+                  </optgroup>
+                </select>
+              </div>
+              <input value="{{ fc.copy }}" onChange="{{ fc.onCopyChange }}" aria-label="Texto de prueba del copy" style="{{ fc.copyStyle }}" />
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#A6A195;">Cuerpo</span>
+                <select value="{{ fc.bodyFamily }}" onChange="{{ fc.onBodyFamilyChange }}" style="font-family:'Space Grotesk',sans-serif;font-size:11px;padding:5px 8px;border:1px solid #DDDAD1;border-radius:8px;background:#fff;color:#221F1A;cursor:pointer;transition:border-color 140ms ease-out;" style-hover="border-color:#221F1A;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;">
+                  <optgroup label="Serif">
+                    <option value="Fraunces">Fraunces</option>
+                    <option value="Playfair Display">Playfair Display</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond</option>
+                    <option value="DM Serif Display">DM Serif Display</option>
+                    <option value="Spectral">Spectral</option>
+                    <option value="Bodoni Moda">Bodoni Moda</option>
+                    <option value="Libre Caslon Text">Libre Caslon Text</option>
+                    <option value="Instrument Serif">Instrument Serif</option>
+                  </optgroup>
+                  <optgroup label="Sans">
+                    <option value="Work Sans">Work Sans</option>
+                    <option value="Space Grotesk">Space Grotesk</option>
+                    <option value="Archivo">Archivo</option>
+                    <option value="Manrope">Manrope</option>
+                    <option value="Sora">Sora</option>
+                    <option value="Public Sans">Public Sans</option>
+                    <option value="Epilogue">Epilogue</option>
+                  </optgroup>
+                  <optgroup label="Mono / carácter">
+                    <option value="IBM Plex Mono">IBM Plex Mono</option>
+                    <option value="Special Elite">Special Elite</option>
+                    <option value="Courier Prime">Courier Prime</option>
+                  </optgroup>
+                </select>
+              </div>
+              <textarea value="{{ fc.body }}" onChange="{{ fc.onBodyChange }}" rows="3" aria-label="Texto de prueba del cuerpo" style="{{ fc.bodyStyle }}"></textarea>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:96px 64px 140px;border-top:1px solid #DDDAD1;position:relative;">
+      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">04</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#C2542F;margin-bottom:10px;">Aplicaciones</div>
+      <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Donde la marca vive</h2>
+      <p style="max-width:60ch;color:#6E6A5E;font-size:15px;line-height:1.65;margin:0 0 32px;">Tarjetas, señalética, certificados de autenticidad, packaging, papelería. Traé fotos de cada pieza que la identidad va a tener que resolver.</p>
+
+      <div data-noprint="true" style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
+        <label style="font-family:'Space Grotesk',sans-serif;background:#221F1A;color:#F1F0EB;padding:10px 20px;border-radius:999px;font-size:13px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;display:inline-block;" style-hover="background:#3A332B;transform:translateY(-1px);" style-active="transform:scale(0.97);">
+          Traer imágenes
+          <input type="file" accept="image/*" multiple="" onChange="{{ onUploadApplications }}" style="display:none;" />
+        </label>
+        <input type="text" placeholder="…o pegá una URL de imagen" value="{{ appUrlDraft }}" onChange="{{ onAppUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid #DDDAD1;border-radius:999px;font-size:13px;width:230px;background:#FBFAF6;color:#221F1A;transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:#2680AD;box-shadow:0 0 0 3px #2680AD22;" />
+        <button onClick="{{ onAddAppUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid #DDDAD1;color:#221F1A;padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:#221F1A;" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px #F1F0EB,0 0 0 4px #2680AD;">Sumar al tablero</button>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#A6A195;">Ctrl+V también funciona acá</span>
+      </div>
+
+      <div ref="{{ applicationsRef }}" onMouseEnter="{{ setActiveApplications }}" style="position:relative;min-height:520px;background:#FBFAF6;border:1px solid #DDDAD1;border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
+        <sc-for list="{{ applicationImages }}" as="img" hint-placeholder-count="1">
+          <div style="{{ img.style }}">
+            <sc-if value="{{ img.hasUrl }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#fff;padding:8px 8px 22px;box-shadow:0 6px 18px rgba(34,31,26,0.16);border-radius:2px;transition:box-shadow 200ms ease-out;">
+                <img ref="{{ img.imgRef }}" data-sample-img="true" data-img-id="{{ img.id }}" data-img-section="applications" alt="Aplicación de la marca" style="display:block;width:100%;height:auto;pointer-events:none;user-select:none;" />
+              </div>
+            </sc-if>
+            <div onPointerDown="{{ img.onDragStart }}" style="position:absolute;inset:0 0 22px 0;cursor:grab;" style-active="cursor:grabbing;"></div>
+            <div onPointerDown="{{ img.onResizeStart }}" title="Estirá para cambiar el tamaño" style="position:absolute;right:-6px;bottom:16px;width:14px;height:14px;background:#2680AD;border-radius:4px;cursor:nwse-resize;opacity:0.45;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.15);"></div>
+            <button data-noprint="true" onClick="{{ img.onDelete }}" aria-label="Sacar esta imagen" title="Sacar esta imagen" style="position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:#221F1A;color:#F1F0EB;border:none;font-size:12px;cursor:pointer;line-height:1;opacity:0.4;transition:opacity 160ms ease-out,transform 160ms ease-out;" style-hover="opacity:1;transform:scale(1.12);" style-focus="outline:none;opacity:1;box-shadow:0 0 0 2px #fff,0 0 0 4px #2680AD;">×</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:60;">
+      <sc-for list="{{ notesR }}" as="n" hint-placeholder-count="1">
+        <div style="{{ n.style }}pointer-events:auto;box-shadow:0 8px 20px rgba(34,31,26,0.22);padding:16px 14px 14px;animation:popIn 260ms cubic-bezier(0.34,1.56,0.64,1) both;">
+          <div onPointerDown="{{ n.onDragStart }}" data-noprint="true" title="Agarrá y llevame a donde quieras" style="height:14px;margin:-16px -14px 8px;cursor:grab;" style-active="cursor:grabbing;"></div>
+          <button data-noprint="true" onClick="{{ n.onDelete }}" aria-label="Tirar esta nota" title="Tirar esta nota" style="position:absolute;top:4px;right:6px;background:none;border:none;font-size:13px;cursor:pointer;color:#00000059;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:#000000cc;transform:scale(1.2);" style-focus="outline:none;box-shadow:0 0 0 2px #2680AD;border-radius:4px;">×</button>
+          <textarea value="{{ n.text }}" onChange="{{ n.onTextChange }}" placeholder="Anotá lo que se te cruce…" rows="4" aria-label="Nota" style="width:100%;border:none;background:transparent;resize:none;outline:none;font-family:'Caveat',cursive;font-size:18px;line-height:1.25;color:#221F1A;"></textarea>
+        </div>
+      </sc-for>
+    </div>
+
+  </div>
+
+  <button data-noprint="true" onClick="{{ addNote }}" aria-label="Dejar una nota" title="Dejar una nota donde estés mirando" style="position:fixed;bottom:32px;right:32px;width:56px;height:56px;border-radius:50%;background:#C2542F;color:#F1F0EB;border:none;font-size:26px;cursor:pointer;box-shadow:0 8px 22px rgba(194,84,47,0.4);z-index:200;transition:transform 220ms cubic-bezier(0.34,1.56,0.64,1),background 160ms ease-out;" style-hover="transform:rotate(90deg) scale(1.06);background:#a84525;" style-active="transform:scale(0.92);" style-focus="outline:none;box-shadow:0 0 0 3px #F1F0EB,0 0 0 5px #2680AD;">+</button>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+let __uid = 0;
+function uid(prefix){ return prefix + '_' + Date.now() + '_' + (__uid++); }
+
+function placeholderSvg(label){
+  let lines = '';
+  for (let i = -300; i < 400; i += 22){
+    lines += `<line x1="${i}" y1="0" x2="${i+300}" y2="300" stroke="#D6D2C6" stroke-width="1.5"/>`;
+  }
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'>
+    <rect width='100%' height='100%' fill='#E7E4DB'/>
+    <g>${lines}</g>
+    <text x='50%' y='50%' font-family='monospace' font-size='13' fill='#807B6E' text-anchor='middle' dominant-baseline='middle'>${label}</text>
+  </svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+function oklchToHex(l, c, h){
+  try{
+    const canvas = document.createElement('canvas');
+    canvas.width = 1; canvas.height = 1;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = `oklch(${l} ${c} ${h})`;
+    ctx.fillRect(0, 0, 1, 1);
+    const d = ctx.getImageData(0, 0, 1, 1).data;
+    return '#' + [d[0], d[1], d[2]].map(x => x.toString(16).padStart(2, '0')).join('');
+  }catch(e){ return '#999999'; }
+}
+
+function hexToHsl(hex){
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!m) return null;
+  let r = parseInt(m[1],16)/255, g = parseInt(m[2],16)/255, b = parseInt(m[3],16)/255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b);
+  let h = 0;
+  const d = max - min;
+  const l = (max+min)/2;
+  const s = d === 0 ? 0 : d / (1 - Math.abs(2*l-1));
+  if (d !== 0){
+    if (max === r) h = ((g-b)/d) % 6;
+    else if (max === g) h = (b-r)/d + 2;
+    else h = (r-g)/d + 4;
+    h *= 60;
+    if (h < 0) h += 360;
+  }
+  return { h, s, l };
+}
+
+function hexToHue(hex){
+  const hsl = hexToHsl(hex);
+  return hsl ? hsl.h : null;
+}
+
+function nameForColor(hex){
+  const hsl = hexToHsl(hex);
+  if (!hsl) return 'Color';
+  const { h, s, l } = hsl;
+  if (s < 0.08){
+    if (l > 0.85) return 'Chalk';
+    if (l > 0.65) return 'Bone';
+    if (l > 0.45) return 'Stone';
+    if (l > 0.25) return 'Ash';
+    return 'Ink';
+  }
+  let noun;
+  if (h < 15 || h >= 345) noun = 'Rose';
+  else if (h < 45) noun = 'Clay';
+  else if (h < 70) noun = 'Ochre';
+  else if (h < 150) noun = 'Moss';
+  else if (h < 200) noun = 'Teal';
+  else if (h < 250) noun = 'Denim';
+  else if (h < 290) noun = 'Plum';
+  else noun = 'Berry';
+  let mod;
+  if (l > 0.8) mod = 'Pale ';
+  else if (l > 0.6) mod = 'Warm ';
+  else if (l > 0.4) mod = 'Deep ';
+  else mod = 'Dark ';
+  if (s < 0.25) mod = mod === 'Dark ' ? 'Muted ' : 'Soft ';
+  return mod + noun;
+}
+
+function classifyRole(hex){
+  const hsl = hexToHsl(hex);
+  if (!hsl) return 'accent';
+  if (hsl.s < 0.12 && hsl.l > 0.28) return 'neutral';
+  if (hsl.l < 0.45) return 'deep';
+  return 'accent';
+}
+
+function isChromatic(hex){
+  const hsl = hexToHsl(hex);
+  return !!(hsl && hsl.s > 0.15);
+}
+
+const HUE_CYCLE = [28, 340, 200, 150, 265, 80, 10, 235];
+
+function avgHue(hexes){
+  const hues = hexes.map(hexToHue).filter(h => h !== null);
+  if (!hues.length) return 40;
+  let x = 0, y = 0;
+  hues.forEach(h => { x += Math.cos(h*Math.PI/180); y += Math.sin(h*Math.PI/180); });
+  let a = Math.atan2(y, x) * 180 / Math.PI;
+  if (a < 0) a += 360;
+  return a;
+}
+
+const ROLE_POOLS = {
+  neutral: [[0.95,0.015],[0.87,0.02],[0.7,0.02],[0.33,0.015],[0.55,0.018],[0.42,0.016]],
+  deep: [[0.4,0.09],[0.3,0.08],[0.25,0.07],[0.45,0.1]],
+  accent: [[0.68,0.16],[0.72,0.18],[0.6,0.2]]
+};
+const ROLE_HUE_OFFSET = { neutral: 0, deep: 12, accent: 150 };
+const ROLE_TARGETS = { neutral: 4, deep: 2, accent: 1 };
+
+function genForRole(baseHue, role, count){
+  if (count <= 0) return [];
+  return ROLE_POOLS[role].slice(0, count).map(([l,c]) => {
+    const hex = oklchToHex(l, c, (baseHue + ROLE_HUE_OFFSET[role]) % 360);
+    return { id: uid('col'), hex, name: nameForColor(hex), role, locked: false };
+  });
+}
+
+const PAIR_SETS = [
+  ['Fraunces','Work Sans','Work Sans'],
+  ['Playfair Display','Space Grotesk','Public Sans'],
+  ['DM Serif Display','Manrope','Manrope'],
+  ['Special Elite','IBM Plex Mono','Courier Prime'],
+  ['Cormorant Garamond','Archivo','Archivo'],
+  ['Bodoni Moda','Sora','Sora']
+];
+
+const STORAGE_KEY = 'cavallmagic_moodboard_v1';
+
+function buildInitialState(){
+  return {
+    images: {
+      concept: [
+        {id:uid('img'), url:placeholderSvg('Referencia visual'), x:40, y:40, w:280, rot:-1.5},
+        {id:uid('img'), url:placeholderSvg('Marca que te guste'), x:360, y:90, w:260, rot:1.2}
+      ],
+      applications: [
+        {id:uid('img'), url:placeholderSvg('Foto de aplicación (tarjeta, señalética...)'), x:40, y:40, w:300, rot:-1}
+      ]
+    },
+    colors: [
+      {id:uid('col'), hex:'#F6F1E7', name:'Chalk', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#EDE3D0', name:'Bone', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#B9A88F', name:'Warm Stone', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#4A423A', name:'Dark Ash', role:'neutral', locked:false},
+      {id:uid('col'), hex:'#8C3B2E', name:'Deep Terracotta', role:'deep', locked:false},
+      {id:uid('col'), hex:'#2F4538', name:'Deep Moss', role:'deep', locked:false},
+      {id:uid('col'), hex:'#D9A441', name:'Warm Ochre', role:'accent', locked:false}
+    ],
+    fontCards: [
+      {id:uid('fc'), titleFamily:'Fraunces', copyFamily:'Work Sans', bodyFamily:'Work Sans', title:'Cavall Màgic', copy:'Atelier de Lucas Lopes', body:'Producción propia, clases y talleres en el corazón de Sant Antoni.'},
+      {id:uid('fc'), titleFamily:'Playfair Display', copyFamily:'Space Grotesk', bodyFamily:'Public Sans', title:'Cavall Màgic', copy:'Talleres y clases', body:'Producción propia, clases y talleres en el corazón de Sant Antoni.'},
+      {id:uid('fc'), titleFamily:'Special Elite', copyFamily:'IBM Plex Mono', bodyFamily:'Courier Prime', title:'Cavall Màgic', copy:'Certificado de autenticidad', body:'Producción propia, clases y talleres en el corazón de Sant Antoni.'}
+    ],
+    notes: [
+      {id:uid('note'), x:900, y:30, text:'Agarrame y llevame a donde quieras ✎', color:'#EFE3B8', rot:-3}
+    ],
+    newColorHex: '#8C3B2E',
+    conceptUrlDraft: '',
+    appUrlDraft: '',
+    pairIdx: 0,
+    paletteIdx: 0
+  };
+}
+
+class Component extends DCLogic {
+  state = buildInitialState();
+  conceptRef = React.createRef();
+  applicationsRef = React.createRef();
+  notesWrapRef = React.createRef();
+  activeSection = 'concept';
+  drag = null;
+
+  componentDidMount(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw){
+        const parsed = JSON.parse(raw);
+        if (parsed.fontCards){
+          parsed.fontCards = parsed.fontCards.map(c => c.titleFamily ? c : {
+            ...c,
+            titleFamily: c.family || 'Fraunces',
+            copyFamily: c.family || 'Work Sans',
+            bodyFamily: c.family || 'Work Sans'
+          });
+        }
+        if (parsed.notes){
+          parsed.notes = parsed.notes.map(n => (n.color === '#F6D96B' || n.color === '#F5D76E') ? { ...n, color: '#EFE3B8' } : n);
+        }
+        if (parsed.colors){
+          parsed.colors = parsed.colors.map(c => c.role ? c : { ...c, role: classifyRole(c.hex), locked: !!c.locked });
+        }
+        this.setState(parsed);
+      }
+    }catch(e){}
+    this._onPaste = (e) => {
+      const items = (e.clipboardData || window.clipboardData || {}).items || [];
+      for (const it of items){
+        if (it.type && it.type.indexOf('image') === 0){
+          const file = it.getAsFile();
+          const reader = new FileReader();
+          reader.onload = () => this.addImage(this.activeSection, reader.result);
+          reader.readAsDataURL(file);
+          e.preventDefault();
+        }
+      }
+    };
+    this._onMove = (e) => this.handlePointerMove(e);
+    this._onUp = () => { this.drag = null; this.save(); };
+    this._onImgError = (e) => {
+      const el = e.target;
+      if (el && el.tagName === 'IMG' && el.dataset && el.dataset.imgId){
+        const section = el.dataset.imgSection, id = el.dataset.imgId;
+        const item = (this.state.images[section] || []).find(i => i.id === id);
+        if (item && item.url && item.url.indexOf('data:') === 0){
+          this.deleteImage(section, id);
+        } else {
+          this.updateImage(section, id, { url: placeholderSvg('No pudimos cargar esa URL — probá descargarla y subirla') });
+          this.save();
+        }
+      }
+    };
+    document.addEventListener('paste', this._onPaste);
+    window.addEventListener('pointermove', this._onMove);
+    window.addEventListener('pointerup', this._onUp);
+    document.addEventListener('error', this._onImgError, true);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener('paste', this._onPaste);
+    window.removeEventListener('pointermove', this._onMove);
+    window.removeEventListener('pointerup', this._onUp);
+    document.removeEventListener('error', this._onImgError, true);
+  }
+
+  save(){
+    try{
+      const { images, colors, fontCards, notes } = this.state;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ images, colors, fontCards, notes }));
+    }catch(e){}
+  }
+
+  addImage(section, url){
+    this.setState(s => {
+      const list = s.images[section];
+      const n = list.length;
+      const item = { id: uid('img'), url, x: 40 + (n % 4) * 30, y: 40 + (n % 4) * 30, w: 280, rot: (Math.random()*6-3) };
+      return { images: { ...s.images, [section]: [...list, item] } };
+    }, () => this.save());
+  }
+
+  updateImage(section, id, patch){
+    this.setState(s => ({
+      images: { ...s.images, [section]: s.images[section].map(i => i.id === id ? { ...i, ...patch } : i) }
+    }));
+  }
+
+  deleteImage(section, id){
+    this.setState(s => ({ images: { ...s.images, [section]: s.images[section].filter(i => i.id !== id) } }), () => this.save());
+  }
+
+  startImageDrag(section, id, e){
+    e.preventDefault(); e.stopPropagation();
+    const ref = section === 'concept' ? this.conceptRef : this.applicationsRef;
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const item = this.state.images[section].find(i => i.id === id);
+    this.drag = { type: 'image', section, id, offsetX: e.clientX - rect.left - item.x, offsetY: e.clientY - rect.top - item.y };
+  }
+
+  startResize(section, id, e){
+    e.preventDefault(); e.stopPropagation();
+    const item = this.state.images[section].find(i => i.id === id);
+    this.drag = { type: 'resize', section, id, startX: e.clientX, startW: item.w };
+  }
+
+  startNoteDrag(id, e){
+    e.preventDefault(); e.stopPropagation();
+    const note = this.state.notes.find(n => n.id === id);
+    this.drag = { type: 'note', id, offsetX: e.pageX - note.x, offsetY: e.pageY - note.y };
+  }
+
+  handlePointerMove(e){
+    if (!this.drag) return;
+    if (this.drag.type === 'image'){
+      const ref = this.drag.section === 'concept' ? this.conceptRef : this.applicationsRef;
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const x = Math.max(0, e.clientX - rect.left - this.drag.offsetX);
+      const y = Math.max(0, e.clientY - rect.top - this.drag.offsetY);
+      this.updateImage(this.drag.section, this.drag.id, { x, y });
+    } else if (this.drag.type === 'resize'){
+      const dw = e.clientX - this.drag.startX;
+      this.updateImage(this.drag.section, this.drag.id, { w: Math.max(80, this.drag.startW + dw) });
+    } else if (this.drag.type === 'note'){
+      const x = e.pageX - this.drag.offsetX;
+      const y = e.pageY - this.drag.offsetY;
+      this.updateNote(this.drag.id, { x, y });
+    }
+  }
+
+  addNote(){
+    const wrap = this.notesWrapRef && this.notesWrapRef.current;
+    const rect = wrap ? wrap.getBoundingClientRect() : { left: 0, top: 0 };
+    const x = window.innerWidth/2 - 95 - rect.left;
+    const y = Math.max(20, 170 - rect.top);
+    this.setState(s => ({ notes: [...s.notes, { id: uid('note'), x, y, text: '', color: '#EFE3B8', rot: (Math.random()*6-3) }] }), () => this.save());
+  }
+
+  updateNote(id, patch){
+    this.setState(s => ({ notes: s.notes.map(n => n.id === id ? { ...n, ...patch } : n) }));
+  }
+
+  deleteNote(id){
+    this.setState(s => ({ notes: s.notes.filter(n => n.id !== id) }), () => this.save());
+  }
+
+  addColor(){
+    if (!this.state.newColorHex) return;
+    const hex = this.state.newColorHex;
+    this.setState(s => ({
+      colors: [...s.colors, { id: uid('col'), hex, name: nameForColor(hex), role: classifyRole(hex), locked: false }]
+    }), () => this.save());
+  }
+
+  toggleLock(id){
+    this.setState(s => ({ colors: s.colors.map(c => c.id === id ? { ...c, locked: !c.locked } : c) }), () => this.save());
+  }
+
+  updateColorField(id, field, value){
+    this.setState(s => ({ colors: s.colors.map(c => c.id === id ? { ...c, [field]: value } : c) }), () => this.save());
+  }
+
+  deleteColor(id){
+    this.setState(s => ({ colors: s.colors.filter(c => c.id !== id) }), () => this.save());
+  }
+
+  suggestPalette(){
+    const locked = this.state.colors.filter(c => c.locked);
+    const imageHexes = [];
+    const imgs = Array.from(document.querySelectorAll('[data-sample-img]'));
+    imgs.forEach(el => {
+      try{
+        const c = document.createElement('canvas');
+        c.width = 16; c.height = 16;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(el, 0, 0, 16, 16);
+        const data = ctx.getImageData(0, 0, 16, 16).data;
+        let r=0,g=0,b=0,n=0;
+        for (let i=0;i<data.length;i+=4){ r+=data[i]; g+=data[i+1]; b+=data[i+2]; n++; }
+        r=Math.round(r/n); g=Math.round(g/n); b=Math.round(b/n);
+        imageHexes.push('#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join(''));
+      }catch(err){}
+    });
+    const lockedChromatic = locked.map(c => c.hex).filter(isChromatic);
+    const imageChromatic = imageHexes.filter(isChromatic);
+    const cycleIdx = (this.state.paletteIdx || 0) % HUE_CYCLE.length;
+    let baseHue;
+    if (lockedChromatic.length) baseHue = avgHue(lockedChromatic);
+    else if (imageChromatic.length) baseHue = (avgHue(imageChromatic) + cycleIdx * 40) % 360;
+    else baseHue = HUE_CYCLE[cycleIdx];
+    const lockedCounts = { neutral: 0, deep: 0, accent: 0 };
+    locked.forEach(c => { lockedCounts[c.role] = (lockedCounts[c.role] || 0) + 1; });
+    const generated = ['neutral','deep','accent'].flatMap(role =>
+      genForRole(baseHue, role, Math.max(0, ROLE_TARGETS[role] - lockedCounts[role]))
+    );
+    this.setState({ colors: [...locked, ...generated], paletteIdx: cycleIdx + 1 }, () => this.save());
+  }
+
+  addFontCard(){
+    this.setState(s => ({ fontCards: [...s.fontCards, { id: uid('fc'), titleFamily: 'Work Sans', copyFamily: 'Work Sans', bodyFamily: 'Work Sans', title: 'Cavall Màgic', copy: 'Escribí un copy de prueba', body: 'Texto de cuerpo para ver cómo respira la fuente en párrafos largos.' }] }), () => this.save());
+  }
+
+  updateFontCard(id, field, value){
+    this.setState(s => ({ fontCards: s.fontCards.map(c => c.id === id ? { ...c, [field]: value } : c) }), () => this.save());
+  }
+
+  deleteFontCard(id){
+    this.setState(s => ({ fontCards: s.fontCards.filter(c => c.id !== id) }), () => this.save());
+  }
+
+  suggestFonts(){
+    const idx = (this.state.pairIdx || 0) % PAIR_SETS.length;
+    const [titleFamily, copyFamily, bodyFamily] = PAIR_SETS[idx];
+    this.setState(s => ({
+      fontCards: [...s.fontCards, { id: uid('fc'), titleFamily, copyFamily, bodyFamily, title: 'Cavall Màgic', copy: 'Atelier de Lucas Lopes', body: 'Producción propia, clases y talleres en el corazón de Sant Antoni.' }],
+      pairIdx: idx + 1
+    }), () => this.save());
+  }
+
+  renderVals(){
+    const s = this.state;
+
+    const mapImg = (section) => s.images[section].map(img => ({
+      ...img,
+      hasUrl: !!(img.url && img.url.length),
+      style: `position:absolute;left:${img.x}px;top:${img.y}px;width:${img.w}px;transform:rotate(${img.rot}deg);`,
+      onDragStart: (e) => this.startImageDrag(section, img.id, e),
+      onResizeStart: (e) => this.startResize(section, img.id, e),
+      onDelete: () => this.deleteImage(section, img.id),
+      imgRef: (el) => { if (el && img.url) el.src = img.url; }
+    }));
+
+    const anim = (s.paletteIdx || 0) % 2 ? 'fadeUpB' : 'fadeUpA';
+    const colorCards = s.colors.map((c, i) => ({
+      ...c,
+      cardStyle: `animation:${anim} 320ms cubic-bezier(0.22,1,0.36,1) both;animation-delay:${i*45}ms;`,
+      swatchStyle: `background:${c.hex};width:110px;height:110px;border-radius:50%;margin-bottom:18px;transition:transform 240ms cubic-bezier(0.34,1.56,0.64,1),box-shadow 200ms ease-out;box-shadow:${c.locked ? 'inset 0 0 0 1px rgba(0,0,0,0.06), 0 0 0 3px #FBFAF6, 0 0 0 5px #2680AD' : 'inset 0 0 0 1px rgba(0,0,0,0.06)'};`,
+      lockLabel: c.locked ? '● Fijado' : '○ Fijar',
+      lockStyle: c.locked
+        ? `font-family:'Space Grotesk',sans-serif;background:none;border:none;color:#2680AD;font-size:11px;font-weight:700;cursor:pointer;transition:color 140ms ease-out;`
+        : `font-family:'Space Grotesk',sans-serif;background:none;border:none;color:#A6A195;font-size:11px;cursor:pointer;transition:color 140ms ease-out;`,
+      onNameChange: (e) => this.updateColorField(c.id, 'name', e.target.value),
+      onToggleLock: () => this.toggleLock(c.id),
+      onDelete: () => this.deleteColor(c.id)
+    }));
+
+    const fontCards = s.fontCards.map(fc => ({
+      ...fc,
+      titleStyle: `font-family:'${fc.titleFamily || 'Fraunces'}',serif;font-weight:700;font-size:28px;color:#221F1A;margin:0;border:none;background:transparent;width:100%;outline:none;padding:0;display:block;border-radius:6px;`,
+      copyStyle: `font-family:'${fc.copyFamily || 'Work Sans'}',serif;font-weight:500;font-size:15px;color:#6E6A5E;margin:0;border:none;background:transparent;width:100%;outline:none;padding:0;display:block;border-radius:6px;`,
+      bodyStyle: `font-family:'${fc.bodyFamily || 'Work Sans'}',serif;font-weight:400;font-size:13px;line-height:1.6;color:#55524A;border:none;background:transparent;width:100%;resize:vertical;outline:none;padding:0;border-radius:6px;`,
+      onTitleFamilyChange: (e) => this.updateFontCard(fc.id, 'titleFamily', e.target.value),
+      onCopyFamilyChange: (e) => this.updateFontCard(fc.id, 'copyFamily', e.target.value),
+      onBodyFamilyChange: (e) => this.updateFontCard(fc.id, 'bodyFamily', e.target.value),
+      onTitleChange: (e) => this.updateFontCard(fc.id, 'title', e.target.value),
+      onCopyChange: (e) => this.updateFontCard(fc.id, 'copy', e.target.value),
+      onBodyChange: (e) => this.updateFontCard(fc.id, 'body', e.target.value),
+      onDelete: () => this.deleteFontCard(fc.id)
+    }));
+
+    const notesR = s.notes.map(n => ({
+      ...n,
+      style: `position:absolute;left:${n.x}px;top:${n.y}px;width:190px;background:${n.color};transform:rotate(${n.rot}deg);`,
+      onTextChange: (e) => this.updateNote(n.id, { text: e.target.value }),
+      onDragStart: (e) => this.startNoteDrag(n.id, e),
+      onDelete: () => this.deleteNote(n.id)
+    }));
+
+    return {
+      conceptRef: this.conceptRef,
+      notesWrapRef: this.notesWrapRef,
+      applicationsRef: this.applicationsRef,
+      conceptImages: mapImg('concept'),
+      applicationImages: mapImg('applications'),
+      colorCards, fontCards, notesR,
+      newColorHex: s.newColorHex,
+      conceptUrlDraft: s.conceptUrlDraft,
+      appUrlDraft: s.appUrlDraft,
+      onNewColorHexChange: (e) => this.setState({ newColorHex: e.target.value }),
+      onAddColor: () => this.addColor(),
+      suggestPalette: () => this.suggestPalette(),
+      addFontCard: () => this.addFontCard(),
+      suggestFonts: () => this.suggestFonts(),
+      addNote: () => this.addNote(),
+      setActiveConcept: () => { this.activeSection = 'concept'; },
+      setActiveApplications: () => { this.activeSection = 'applications'; },
+      onUploadConcept: (e) => {
+        Array.from(e.target.files || []).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = () => this.addImage('concept', reader.result);
+          reader.readAsDataURL(file);
+        });
+        e.target.value = '';
+      },
+      onUploadApplications: (e) => {
+        Array.from(e.target.files || []).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = () => this.addImage('applications', reader.result);
+          reader.readAsDataURL(file);
+        });
+        e.target.value = '';
+      },
+      onConceptUrlChange: (e) => this.setState({ conceptUrlDraft: e.target.value }),
+      onAppUrlChange: (e) => this.setState({ appUrlDraft: e.target.value }),
+      onAddConceptUrl: () => {
+        if (!this.state.conceptUrlDraft.trim()) return;
+        this.addImage('concept', this.state.conceptUrlDraft.trim());
+        this.setState({ conceptUrlDraft: '' });
+      },
+      onAddAppUrl: () => {
+        if (!this.state.appUrlDraft.trim()) return;
+        this.addImage('applications', this.state.appUrlDraft.trim());
+        this.setState({ appUrlDraft: '' });
+      },
+      exportPdf: () => window.print()
+    };
+  }
+}
+
+</script>
+</body>
+</html>
