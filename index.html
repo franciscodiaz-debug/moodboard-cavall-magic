@@ -33,20 +33,38 @@
   @keyframes fadeUpA{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
   @keyframes fadeUpB{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
   @keyframes popIn{from{opacity:0;transform:scale(0.85) rotate(-6deg);}to{opacity:1;transform:scale(1) rotate(0deg);}}
+  @media (max-width: 680px){
+    section{ padding:52px 20px !important; }
+    h1{ font-size:34px !important; letter-spacing:-0.4px !important; }
+    h2{ font-size:26px !important; }
+    .mb-root{ overflow-x:clip !important; }
+    .mb-bar{ padding:12px 18px !important; gap:12px !important; }
+    .mb-sub{ display:none !important; }
+    .mb-ghost{ font-size:64px !important; top:10px !important; }
+    .mb-card{ width:100% !important; padding:22px !important; }
+    .mb-swatch{ width:calc(50% - 9px) !important; }
+    .mb-field{ width:100% !important; }
+    .mb-canvas{ min-height:340px !important; }
+  }
   @media print{
     [data-noprint]{display:none !important;}
     body{background:#fff;}
+    .mb-bar{ position:static !important; }
+    .mb-ghost{ display:none !important; }
+    section{ padding:32px 44px !important; }
+    .mb-card, .mb-swatch{ break-inside:avoid; }
+    h1{ font-size:42px !important; }
   }
 </style>
 </helmet>
-<div style="font-family:Helvetica,Arial,sans-serif;color:var(--ink);background:transparent;min-height:100vh;">
+<div class="mb-root" style="font-family:Helvetica,Arial,sans-serif;color:var(--ink);background:transparent;min-height:100vh;">
 
   <div aria-hidden="true" data-noprint="true" style="position:fixed;inset:0;pointer-events:none;z-index:500;opacity:0.16;background-image:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22240%22%20height=%22240%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.8%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3CfeColorMatrix%20type=%22saturate%22%20values=%220%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23n)%22%20opacity=%220.4%22/%3E%3C/svg%3E');"></div>
 
-  <div style="position:sticky;top:0;z-index:100;background:#F1F0EBe6;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 64px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;">
+  <div class="mb-bar" style="position:sticky;top:0;z-index:100;background:#F1F0EBe6;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 64px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;">
     <div style="display:flex;align-items:baseline;gap:16px;">
       <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-0.3px;">Cavall Màgic</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);">Painel de identidade</div>
+      <div class="mb-sub" style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);">Painel de identidade</div>
     </div>
     <button data-noprint="true" onClick="{{ exportPdf }}" title="Gera um PDF com todo o painel do jeito que ele aparece" style="font-family:'Space Grotesk',sans-serif;background:var(--ink);color:var(--on-dark);border:none;padding:10px 22px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:0.3px;cursor:pointer;transition:transform 160ms cubic-bezier(0.22,1,0.36,1),background 160ms ease-out;" style-hover="background:var(--btn-hover);transform:translateY(-1px);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Baixar o painel (PDF)</button>
   </div>
@@ -65,7 +83,7 @@
   <div ref="{{ notesWrapRef }}" style="position:relative;">
 
     <section style="padding:96px 64px;border-top:1px solid var(--line);position:relative;">
-      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">01</div>
+      <div aria-hidden="true" class="mb-ghost" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">01</div>
       <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Conceito e direção</div>
       <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">O que a marca quer ser</h2>
       <p style="max-width:60ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Cole referências visuais, marcas que te inspirem e conceitos soltos. Não buscamos um logo único, e sim um tom e um universo de formas com variações conforme o lugar onde aparecem.</p>
@@ -75,12 +93,12 @@
           Trazer imagens
           <input type="file" accept="image/*" multiple="" onChange="{{ onUploadConcept }}" style="display:none;" />
         </label>
-        <input type="text" placeholder="…ou cole uma URL de imagem" value="{{ conceptUrlDraft }}" onChange="{{ onConceptUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;width:230px;background:var(--surface);color:var(--ink);transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;" />
+        <input type="text" class="mb-field" placeholder="…ou cole uma URL de imagem" value="{{ conceptUrlDraft }}" onChange="{{ onConceptUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;width:230px;background:var(--surface);color:var(--ink);transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;" />
         <button onClick="{{ onAddConceptUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid var(--line);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:var(--ink);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Adicionar ao painel</button>
         <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--text-3);">e se você copiou algo, um Ctrl+V aqui em cima já resolve</span>
       </div>
 
-      <div ref="{{ conceptRef }}" onMouseEnter="{{ setActiveConcept }}" style="position:relative;min-height:640px;background:var(--surface);border:1px solid var(--line);border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
+      <div ref="{{ conceptRef }}" class="mb-canvas" onMouseEnter="{{ setActiveConcept }}" style="position:relative;min-height:640px;background:var(--surface);border:1px solid var(--line);border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
         <sc-for list="{{ conceptImages }}" as="img" hint-placeholder-count="2">
           <div style="{{ img.style }}">
             <sc-if value="{{ img.hasUrl }}" hint-placeholder-val="{{ false }}">
@@ -97,7 +115,7 @@
     </section>
 
     <section style="padding:96px 64px;border-top:1px solid var(--line);position:relative;">
-      <div aria-hidden="true" style="position:absolute;top:20px;left:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">02</div>
+      <div aria-hidden="true" class="mb-ghost" style="position:absolute;top:20px;left:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">02</div>
       <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Paleta de cores</div>
       <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">As cores da casa</h2>
       <p style="max-width:62ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Entre cinco e oito cores que funcionem em todas as peças. Escolha as suas no seletor, ou me peça uma proposta — fixe as que quiser manter e eu troco o resto.</p>
@@ -111,7 +129,7 @@
 
       <div style="display:flex;flex-wrap:wrap;gap:18px;">
         <sc-for list="{{ colorCards }}" as="c" hint-placeholder-count="6">
-          <div style="{{ c.cardStyle }}width:180px;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:26px 14px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
+          <div class="mb-swatch" style="{{ c.cardStyle }}width:180px;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:26px 14px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
             <div style="{{ c.swatchStyle }}"></div>
             <input value="{{ c.name }}" onChange="{{ c.onNameChange }}" aria-label="Nome da cor" style="width:100%;text-align:center;border:none;background:transparent;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:0;outline:none;color:var(--ink);border-radius:6px;" style-focus="box-shadow:0 0 0 2px #C2542F44;" />
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-3);text-transform:uppercase;margin-top:5px;">{{ c.hex }}</span>
@@ -125,7 +143,7 @@
     </section>
 
     <section style="padding:96px 64px;border-top:1px solid var(--line);position:relative;">
-      <div aria-hidden="true" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">03</div>
+      <div aria-hidden="true" class="mb-ghost" style="position:absolute;top:20px;right:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">03</div>
       <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Tipografias</div>
       <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Como soa por escrito</h2>
       <p style="max-width:62ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Cada cartão é um conjunto completo: uma fonte para o título, outra para o texto e outra para o corpo. Os logotipos seguem por conta própria — isto é para os textos do dia a dia.</p>
@@ -137,7 +155,7 @@
 
       <div style="display:flex;flex-wrap:wrap;gap:22px;">
         <sc-for list="{{ fontCards }}" as="fc" hint-placeholder-count="3">
-          <div style="width:340px;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:28px;position:relative;animation:fadeUpA 320ms cubic-bezier(0.22,1,0.36,1) both;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
+          <div class="mb-card" style="width:340px;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:28px;position:relative;animation:fadeUpA 320ms cubic-bezier(0.22,1,0.36,1) both;transition:transform 240ms cubic-bezier(0.22,1,0.36,1),box-shadow 240ms ease-out;" style-hover="transform:translateY(-4px);box-shadow:0 14px 30px rgba(34,31,26,0.1);">
             <button data-noprint="true" onClick="{{ fc.onDelete }}" aria-label="Remover este teste" title="Remover este teste" style="position:absolute;top:12px;right:14px;background:none;border:none;color:var(--text-3);font-size:16px;cursor:pointer;transition:color 140ms ease-out,transform 140ms ease-out;" style-hover="color:var(--accent);transform:scale(1.15);" style-focus="outline:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent);border-radius:4px;">×</button>
 
             <div style="margin-bottom:18px;">
@@ -244,7 +262,7 @@
     </section>
 
     <section style="padding:96px 64px 140px;border-top:1px solid var(--line);position:relative;">
-      <div aria-hidden="true" style="position:absolute;top:20px;left:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">04</div>
+      <div aria-hidden="true" class="mb-ghost" style="position:absolute;top:20px;left:56px;font-family:'Fraunces',serif;font-style:italic;font-size:150px;font-weight:600;color:#221F1A0d;line-height:1;user-select:none;pointer-events:none;">04</div>
       <div style="font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Aplicações</div>
       <h2 style="font-family:'Fraunces',serif;font-size:38px;font-weight:600;letter-spacing:-0.5px;margin:0 0 12px;">Onde a marca vive</h2>
       <p style="max-width:60ch;color:var(--text-2);font-size:15px;line-height:1.65;margin:0 0 32px;">Cartões, sinalização, certificados de autenticidade, embalagens, papelaria. Traga fotos de cada peça que a identidade vai precisar resolver.</p>
@@ -254,12 +272,12 @@
           Trazer imagens
           <input type="file" accept="image/*" multiple="" onChange="{{ onUploadApplications }}" style="display:none;" />
         </label>
-        <input type="text" placeholder="…ou cole uma URL de imagem" value="{{ appUrlDraft }}" onChange="{{ onAppUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;width:230px;background:var(--surface);color:var(--ink);transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;" />
+        <input type="text" class="mb-field" placeholder="…ou cole uma URL de imagem" value="{{ appUrlDraft }}" onChange="{{ onAppUrlChange }}" style="font-family:'Space Grotesk',sans-serif;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;width:230px;background:var(--surface);color:var(--ink);transition:border-color 160ms ease-out;" style-focus="outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #C2542F22;" />
         <button onClick="{{ onAddAppUrl }}" style="font-family:'Space Grotesk',sans-serif;background:transparent;border:1px solid var(--line);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:13px;cursor:pointer;transition:border-color 160ms ease-out;" style-hover="border-color:var(--ink);" style-active="transform:scale(0.97);" style-focus="outline:none;box-shadow:0 0 0 2px var(--on-dark),0 0 0 4px var(--accent);">Adicionar ao painel</button>
         <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--text-3);">Ctrl+V também funciona aqui</span>
       </div>
 
-      <div ref="{{ applicationsRef }}" onMouseEnter="{{ setActiveApplications }}" style="position:relative;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
+      <div ref="{{ applicationsRef }}" class="mb-canvas" onMouseEnter="{{ setActiveApplications }}" style="position:relative;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:20px;background-image:radial-gradient(circle,#0000000d 1px,transparent 1px);background-size:20px 20px;overflow:hidden;">
         <sc-for list="{{ applicationImages }}" as="img" hint-placeholder-count="1">
           <div style="{{ img.style }}">
             <sc-if value="{{ img.hasUrl }}" hint-placeholder-val="{{ false }}">
@@ -414,10 +432,15 @@ const ROLE_POOLS = {
 const ROLE_HUE_OFFSET = { neutral: 0, deep: 12, accent: 150 };
 const ROLE_TARGETS = { neutral: 4, deep: 2, accent: 1 };
 
-function genForRole(baseHue, role, count){
+function genForRole(baseHue, role, count, variant){
   if (count <= 0) return [];
-  return ROLE_POOLS[role].slice(0, count).map(([l,c]) => {
-    const hex = oklchToHex(l, c, (baseHue + ROLE_HUE_OFFSET[role]) % 360);
+  const pool = ROLE_POOLS[role];
+  const off = ((((variant || 0) % pool.length) + pool.length) % pool.length);
+  const rotated = pool.slice(off).concat(pool.slice(0, off));
+  return rotated.slice(0, count).map(([l,c]) => {
+    const lj = Math.max(0.12, Math.min(0.97, l + (Math.random()*0.05 - 0.025)));
+    const hj = Math.random()*20 - 10;
+    const hex = oklchToHex(lj, c, (baseHue + ROLE_HUE_OFFSET[role] + hj + 360) % 360);
     return { id: uid('col'), hex, name: nameForColor(hex), role, locked: false };
   });
 }
@@ -667,8 +690,9 @@ class Component extends DCLogic {
     else baseHue = HUE_CYCLE[cycleIdx];
     const lockedCounts = { neutral: 0, deep: 0, accent: 0 };
     locked.forEach(c => { lockedCounts[c.role] = (lockedCounts[c.role] || 0) + 1; });
+    const variant = this.state.paletteIdx || 0;
     const generated = ['neutral','deep','accent'].flatMap(role =>
-      genForRole(baseHue, role, Math.max(0, ROLE_TARGETS[role] - lockedCounts[role]))
+      genForRole(baseHue, role, Math.max(0, ROLE_TARGETS[role] - lockedCounts[role]), variant)
     );
     this.setState({ colors: [...locked, ...generated], paletteIdx: cycleIdx + 1 }, () => this.save());
   }
@@ -737,7 +761,7 @@ class Component extends DCLogic {
 
     const notesR = s.notes.map(n => ({
       ...n,
-      style: `position:absolute;left:${n.x}px;top:${n.y}px;width:190px;background:${n.color};transform:rotate(${n.rot}deg);`,
+      style: `position:absolute;left:min(${n.x}px, calc(100% - 200px));top:${n.y}px;width:190px;background:${n.color};transform:rotate(${n.rot}deg);`,
       onTextChange: (e) => this.updateNote(n.id, { text: e.target.value }),
       onDragStart: (e) => this.startNoteDrag(n.id, e),
       onDelete: () => this.deleteNote(n.id)
